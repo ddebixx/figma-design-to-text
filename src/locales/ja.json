@@ -1,0 +1,33 @@
+{
+  "app": {
+    "title": "Figson Converter",
+    "description": "FigmaフレームをAI向けJSONに変換"
+  },
+  "language": { "label": "言語" },
+  "actions": {
+    "convert": "JSONに変換",
+    "converting": "変換中...",
+    "download": "JSONをダウンロード",
+    "downloading": "ダウンロード中..."
+  },
+  "export": {
+    "heading": "選択範囲をエクスポート",
+    "description": "Figmaでフレームを選択してから変換します。"
+  },
+  "output": {
+    "title": "JSON出力",
+    "empty": "選択範囲を変換するとJSONが表示されます。",
+    "hint": "AI向けのコンパクトJSON — 下の「JSONをダウンロード」を使用してください。",
+    "lineCount": "{{count}} 行",
+    "codeRegion": "行番号付きのJSON出力"
+  },
+  "status": {
+    "processing": "選択範囲を処理中...",
+    "processingSuccess": "変換が完了しました",
+    "processingError": "変換に失敗しました",
+    "downloading": "ダウンロードを準備中...",
+    "downloadSuccess": "JSONをダウンロードしました",
+    "downloadError": "ダウンロードに失敗しました",
+    "noOutput": "ダウンロードできる内容がありません"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "app": {
+    "title": "Figson Converter",
+    "description": "Figma-Frames in KI-freundliches JSON konvertieren"
+  },
+  "language": { "label": "Sprache" },
+  "actions": {
+    "convert": "In JSON konvertieren",
+    "converting": "Konvertierung...",
+    "download": "JSON herunterladen",
+    "downloading": "Download..."
+  },
+  "export": {
+    "heading": "Auswahl exportieren",
+    "description": "Wählen Sie einen Frame in Figma und konvertieren Sie ihn."
+  },
+  "output": {
+    "title": "JSON-Ausgabe",
+    "empty": "Konvertieren Sie eine Auswahl, um JSON zu sehen.",
+    "hint": "Kompaktes JSON für KI-Tools — JSON unten herunterladen.",
+    "lineCount": "{{count}} Zeilen",
+    "codeRegion": "JSON-Ausgabe mit Zeilennummern"
+  },
+  "status": {
+    "processing": "Auswahl wird verarbeitet...",
+    "processingSuccess": "Konvertierung abgeschlossen",
+    "processingError": "Konvertierung fehlgeschlagen",
+    "downloading": "Download wird vorbereitet...",
+    "downloadSuccess": "JSON heruntergeladen",
+    "downloadError": "Download fehlgeschlagen",
+    "noOutput": "Noch nichts zum Herunterladen"
+  }
+}

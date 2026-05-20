@@ -1,0 +1,33 @@
+{
+  "app": {
+    "title": "Figson Converter",
+    "description": "Converti frame Figma in JSON per l'AI"
+  },
+  "language": { "label": "Lingua" },
+  "actions": {
+    "convert": "Converti in JSON",
+    "converting": "Conversione...",
+    "download": "Scarica JSON",
+    "downloading": "Download..."
+  },
+  "export": {
+    "heading": "Esporta selezione",
+    "description": "Seleziona un frame in Figma, poi converti."
+  },
+  "output": {
+    "title": "Output JSON",
+    "empty": "Converti una selezione per vedere il JSON.",
+    "hint": "JSON compatto per strumenti IA — usa Scarica JSON qui sotto.",
+    "lineCount": "{{count}} righe",
+    "codeRegion": "Output JSON con numeri di riga"
+  },
+  "status": {
+    "processing": "Elaborazione selezione...",
+    "processingSuccess": "Conversione completata",
+    "processingError": "Conversione non riuscita",
+    "downloading": "Preparazione download...",
+    "downloadSuccess": "JSON scaricato",
+    "downloadError": "Download non riuscito",
+    "noOutput": "Niente da scaricare"
+  }
+}

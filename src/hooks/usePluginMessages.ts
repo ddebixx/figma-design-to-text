@@ -1,0 +1,19 @@
+import { useEffect } from 'react'
+import type { PluginToUiMessage } from '@/types/shared'
+
+type UsePluginMessagesOptions = {
+  onMessage: (message: PluginToUiMessage) => void
+}
+
+export const usePluginMessages = ({ onMessage }: UsePluginMessagesOptions): void => {
+  useEffect(() => {
+    function handleWindowMessage(event: MessageEvent) {
+      const pluginMessage = event.data?.pluginMessage as PluginToUiMessage | undefined
+      if (!pluginMessage) return
+      onMessage(pluginMessage)
+    }
+
+    window.addEventListener('message', handleWindowMessage)
+    return () => window.removeEventListener('message', handleWindowMessage)
+  }, [onMessage])
+}

@@ -1,0 +1,33 @@
+{
+  "app": {
+    "title": "Figson Converter",
+    "description": "Konwertuj ramki Figma na JSON przyjazny dla AI"
+  },
+  "language": { "label": "Język" },
+  "actions": {
+    "convert": "Konwertuj do JSON",
+    "converting": "Konwertowanie...",
+    "download": "Pobierz JSON",
+    "downloading": "Pobieranie..."
+  },
+  "export": {
+    "heading": "Eksportuj zaznaczenie",
+    "description": "Zaznacz frame w Figma, a następnie konwertuj."
+  },
+  "output": {
+    "title": "Wynik JSON",
+    "empty": "Skonwertuj zaznaczenie, aby zobaczyć JSON.",
+    "hint": "Kompaktowy JSON dla narzędzi AI — pobierz JSON poniżej.",
+    "lineCount": "{{count}} wierszy",
+    "codeRegion": "Wynik JSON z numerami wierszy"
+  },
+  "status": {
+    "processing": "Przetwarzanie zaznaczenia...",
+    "processingSuccess": "Konwersja zakończona",
+    "processingError": "Konwersja nie powiodła się",
+    "downloading": "Przygotowywanie pobierania...",
+    "downloadSuccess": "JSON pobrany",
+    "downloadError": "Pobieranie nie powiodło się",
+    "noOutput": "Brak danych do pobrania"
+  }
+}

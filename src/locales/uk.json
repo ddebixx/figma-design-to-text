@@ -1,0 +1,33 @@
+{
+  "app": {
+    "title": "Figson Converter",
+    "description": "Конвертуйте фрейми Figma в JSON для AI"
+  },
+  "language": { "label": "Мова" },
+  "actions": {
+    "convert": "Конвертувати в JSON",
+    "converting": "Конвертація...",
+    "download": "Завантажити JSON",
+    "downloading": "Завантаження..."
+  },
+  "export": {
+    "heading": "Експорт виділення",
+    "description": "Виділіть фрейм у Figma та конвертуйте."
+  },
+  "output": {
+    "title": "JSON результат",
+    "empty": "Конвертуйте виділення, щоб побачити JSON.",
+    "hint": "Компактний JSON для ШІ — завантажте JSON нижче.",
+    "lineCount": "{{count}} рядків",
+    "codeRegion": "JSON-вивід із номерами рядків"
+  },
+  "status": {
+    "processing": "Обробка виділення...",
+    "processingSuccess": "Конвертацію завершено",
+    "processingError": "Помилка конвертації",
+    "downloading": "Підготовка завантаження...",
+    "downloadSuccess": "JSON завантажено",
+    "downloadError": "Помилка завантаження",
+    "noOutput": "Немає даних для завантаження"
+  }
+}

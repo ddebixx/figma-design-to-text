@@ -1,0 +1,33 @@
+{
+  "app": {
+    "title": "Figson Converter",
+    "description": "将 Figma 画框转换为 AI 友好的 JSON"
+  },
+  "language": { "label": "语言" },
+  "actions": {
+    "convert": "转换为 JSON",
+    "converting": "转换中...",
+    "download": "下载 JSON",
+    "downloading": "下载中..."
+  },
+  "export": {
+    "heading": "导出所选内容",
+    "description": "在 Figma 中选择画框，然后转换。"
+  },
+  "output": {
+    "title": "JSON 输出",
+    "empty": "转换所选内容以查看 JSON。",
+    "hint": "适用于 AI 工具的精简 JSON — 请使用下方的下载 JSON。",
+    "lineCount": "{{count}} 行",
+    "codeRegion": "带行号的 JSON 输出"
+  },
+  "status": {
+    "processing": "正在处理所选内容...",
+    "processingSuccess": "转换完成",
+    "processingError": "转换失败",
+    "downloading": "正在准备下载...",
+    "downloadSuccess": "JSON 已下载",
+    "downloadError": "下载失败",
+    "noOutput": "暂无可下载内容"
+  }
+}
