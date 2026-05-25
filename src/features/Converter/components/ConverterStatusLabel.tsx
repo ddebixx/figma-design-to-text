@@ -1,5 +1,5 @@
 import { Label } from '@/components/ui/label'
-import type { StatusMessageState } from '@/features/Converter/types/statusMessage'
+import type { StatusMessageState } from '@/features/Converter/workflow/types/statusMessage'
 
 type ConverterStatusLabelProps = {
   statusMessage: StatusMessageState

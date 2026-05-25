@@ -1,3 +1,0 @@
-export const JSON_CODE_LINE_HEIGHT_PX = 20
-
-export const JSON_CODE_VIRTUAL_OVERSCAN_LINES = 10

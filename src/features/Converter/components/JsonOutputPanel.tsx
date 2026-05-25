@@ -5,29 +5,32 @@ import { twMerge } from 'tailwind-merge'
 import { Button } from '@/components/ui/button'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { JsonCodeView } from '@/features/Converter/components/JsonCodeView'
-import {
-  CODE_PANEL_CLASS,
-  OUTLINE_BUTTON_CLASS,
-} from '@/features/Converter/consts/glassPanelStyles'
+import { CODE_PANEL_CLASS, OUTLINE_BUTTON_CLASS } from '@/features/Converter/consts/glassPanelStyles'
+import type { ExportOutputFormat } from '@/features/Converter/export/types/exportSettings'
 
 type JsonOutputPanelProps = {
-  jsonOutput: string
-  hasJsonOutput: boolean
+  previewOutput: string
+  hasPreviewOutput: boolean
+  outputFormat: ExportOutputFormat
 }
 
-export const JsonOutputPanel = ({ jsonOutput, hasJsonOutput }: JsonOutputPanelProps) => {
+export const JsonOutputPanel = ({
+  previewOutput,
+  hasPreviewOutput,
+  outputFormat,
+}: JsonOutputPanelProps) => {
   const { t } = useTranslation()
-  const [isOpen, setIsOpen] = useState(hasJsonOutput)
+  const [isOpen, setIsOpen] = useState(hasPreviewOutput)
 
   useEffect(() => {
     function openPanelWhenOutputAvailable() {
-      if (hasJsonOutput) {
+      if (hasPreviewOutput) {
         setIsOpen(true)
       }
     }
 
     openPanelWhenOutputAvailable()
-  }, [hasJsonOutput])
+  }, [hasPreviewOutput])
 
   const chevronClass = twMerge('size-4 text-zinc-500 transition-transform', isOpen && 'rotate-180')
 
@@ -45,9 +48,15 @@ export const JsonOutputPanel = ({ jsonOutput, hasJsonOutput }: JsonOutputPanelPr
         </Button>
       </CollapsibleTrigger>
       <CollapsibleContent className="mt-2 flex flex-col gap-2">
-        <p className="text-[11px] text-zinc-500">{t('output.hint')}</p>
+        <p className="text-[11px] text-zinc-500">
+          {t(`export.outputFormat.options.${outputFormat}.hint`)}
+        </p>
         <div className={CODE_PANEL_CLASS}>
-          <JsonCodeView jsonOutput={jsonOutput} hasJsonOutput={hasJsonOutput} />
+          <JsonCodeView
+            previewOutput={previewOutput}
+            hasPreviewOutput={hasPreviewOutput}
+            outputFormat={outputFormat}
+          />
         </div>
       </CollapsibleContent>
     </Collapsible>

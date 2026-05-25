@@ -8,15 +8,12 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { SUPPORTED_LANGUAGES } from '@/consts/supportedLanguages'
+import { EXPORT_SELECT_CONTENT_CLASS } from '@/features/Converter/export/consts/exportSelectStyles'
 import { LANGUAGE_TRIGGER_CLASS } from '@/features/Converter/consts/glassPanelStyles'
 import { persistLanguage } from '@/lib/i18n'
 import { findSupportedLanguage } from '@/utils/findSupportedLanguage'
 
 const LANGUAGE_TRIGGER_WITH_FLAG_CLASS = twMerge(LANGUAGE_TRIGGER_CLASS, '[&>svg]:hidden')
-
-const LANGUAGE_SELECT_CONTENT_CLASS = twMerge(
-  'z-50 min-w-[10rem] rounded-lg border border-zinc-700 bg-zinc-900 p-1 shadow-lg',
-)
 
 const LANGUAGE_SELECT_ITEM_CLASS = 'text-xs text-zinc-200 focus:bg-zinc-800 focus:text-zinc-200'
 
@@ -41,7 +38,7 @@ export const LanguageSelect = () => {
       </SelectTrigger>
 
       <SelectContent
-        className={LANGUAGE_SELECT_CONTENT_CLASS}
+        className={EXPORT_SELECT_CONTENT_CLASS}
         position="popper"
         align="end"
         sideOffset={6}

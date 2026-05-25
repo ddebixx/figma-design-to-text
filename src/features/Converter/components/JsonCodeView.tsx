@@ -1,18 +1,25 @@
 import { useVirtualizer, type VirtualItem } from '@tanstack/react-virtual'
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { twMerge } from 'tailwind-merge'
 import { JsonCodeLine } from '@/features/Converter/components/JsonCodeLine'
-import {
-  JSON_CODE_LINE_HEIGHT_PX,
-  JSON_CODE_VIRTUAL_OVERSCAN_LINES,
-} from '@/features/Converter/consts/jsonCodeView'
 import { SCROLLBAR_CLASS } from '@/features/Converter/consts/glassPanelStyles'
-import { buildJsonDisplayLines } from '@/features/Converter/utils/buildJsonDisplayLines'
+import { resolveExportFormatLabel } from '@/features/Converter/export/resolve/resolveExportFormatLabel'
+import type { ExportOutputFormat } from '@/features/Converter/export/types/exportSettings'
+import { buildCodeDisplayLines, buildPlainDisplayLines } from '@/features/Converter/preview/buildJsonDisplayLines'
+import {
+  type CodeHighlighter,
+  loadCodeHighlighter,
+  tokenizeCodeContent,
+} from '@/features/Converter/preview/tokenizeJsonForDisplay'
+
+const LINE_HEIGHT_PX = 20
+const VIRTUAL_OVERSCAN_LINES = 10
 
 type JsonCodeViewProps = {
-  jsonOutput: string
-  hasJsonOutput: boolean
+  previewOutput: string
+  hasPreviewOutput: boolean
+  outputFormat: ExportOutputFormat
 }
 
 const resolveLineNumberGutterClass = (lineCount: number): string => {
@@ -27,11 +34,38 @@ const resolveLineNumberGutterClass = (lineCount: number): string => {
   return 'w-7'
 }
 
-export const JsonCodeView = ({ jsonOutput, hasJsonOutput }: JsonCodeViewProps) => {
+export const JsonCodeView = ({
+  previewOutput,
+  hasPreviewOutput,
+  outputFormat,
+}: JsonCodeViewProps) => {
   const { t } = useTranslation()
   const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [highlighter, setHighlighter] = useState<CodeHighlighter | null>(null)
 
-  const displayLines = useMemo(() => buildJsonDisplayLines(jsonOutput), [jsonOutput])
+  useEffect(() => {
+    async function initializeCodeHighlighter() {
+      try {
+        const instance = await loadCodeHighlighter()
+        setHighlighter(instance)
+      } catch {
+        
+      }
+    }
+
+    initializeCodeHighlighter()
+  }, [])
+
+  const displayLines = useMemo(() => {
+    if (!highlighter) {
+      return buildPlainDisplayLines(previewOutput)
+    }
+
+    const tokenLines = tokenizeCodeContent(highlighter, previewOutput, outputFormat)
+
+    return buildCodeDisplayLines(tokenLines)
+  }, [highlighter, previewOutput, outputFormat])
+
   const lineCount = displayLines.length
   const lineNumberGutterClass = resolveLineNumberGutterClass(lineCount)
 
@@ -43,8 +77,8 @@ export const JsonCodeView = ({ jsonOutput, hasJsonOutput }: JsonCodeViewProps) =
   const virtualList = useVirtualizer({
     count: lineCount,
     getScrollElement: () => scrollContainerRef.current,
-    estimateSize: () => JSON_CODE_LINE_HEIGHT_PX,
-    overscan: JSON_CODE_VIRTUAL_OVERSCAN_LINES,
+    estimateSize: () => LINE_HEIGHT_PX,
+    overscan: VIRTUAL_OVERSCAN_LINES,
   })
 
   const scrollViewportClass = twMerge(
@@ -52,9 +86,13 @@ export const JsonCodeView = ({ jsonOutput, hasJsonOutput }: JsonCodeViewProps) =
     'max-h-64 overflow-auto font-mono text-[12px] leading-[1.65]',
   )
 
-  if (!hasJsonOutput) {
+  if (!hasPreviewOutput) {
+    const formatLabel = resolveExportFormatLabel(outputFormat)
+
     return (
-      <p className="px-3 py-10 text-center font-mono text-xs text-zinc-500">{t('output.empty')}</p>
+      <p className="px-3 py-10 text-center font-mono text-xs text-zinc-500">
+        {t('output.empty', { format: formatLabel })}
+      </p>
     )
   }
 
@@ -75,10 +113,7 @@ export const JsonCodeView = ({ jsonOutput, hasJsonOutput }: JsonCodeViewProps) =
         role="region"
         aria-label={t('output.codeRegion')}
       >
-        <div
-          className="relative w-full py-2"
-          style={{ height: virtualList.getTotalSize() }}
-        >
+        <div className="relative w-full py-2" style={{ height: virtualList.getTotalSize() }}>
           {virtualRows.map((virtualRow: VirtualItem) => {
             const line = displayLines[virtualRow.index]
 
@@ -91,7 +126,10 @@ export const JsonCodeView = ({ jsonOutput, hasJsonOutput }: JsonCodeViewProps) =
                   transform: `translateY(${virtualRow.start}px)`,
                 }}
               >
-                <JsonCodeLine line={line} lineNumberClass={lineNumberClass} />
+                <JsonCodeLine
+                  line={line}
+                  lineNumberClass={lineNumberClass}
+                />
               </div>
             )
           })}

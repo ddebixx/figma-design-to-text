@@ -1,26 +1,40 @@
 import { useTranslation } from 'react-i18next'
+import { twMerge } from 'tailwind-merge'
 import { ConvertActionButton } from '@/features/Converter/components/ConvertActionButton'
 import { ConverterStatusLabel } from '@/features/Converter/components/ConverterStatusLabel'
 import { DownloadActionButton } from '@/features/Converter/components/DownloadActionButton'
+import { ExportSettingsPanel } from '@/features/Converter/components/ExportSettingsPanel'
 import { SECTION_CLASS } from '@/features/Converter/consts/glassPanelStyles'
-import type { StatusMessageState } from '@/features/Converter/types/statusMessage'
+import { EXPORT_TWO_COLUMN_GRID_CLASS } from '@/features/Converter/export/consts/exportSelectStyles'
+import type {
+  ExportDetailLevel,
+  ExportOutputFormat,
+  ExportSettings,
+} from '@/features/Converter/export/types/exportSettings'
+import type { StatusMessageState } from '@/features/Converter/workflow/types/statusMessage'
 
 type ConverterActionsProps = {
   isProcessing: boolean
   isDownloading: boolean
-  hasJsonOutput: boolean
+  hasPreviewOutput: boolean
+  exportSettings: ExportSettings
   statusMessage: StatusMessageState
   onConvertClick: () => void
   onDownloadClick: () => void
+  onDetailLevelChange: (detailLevel: ExportDetailLevel) => void
+  onOutputFormatChange: (outputFormat: ExportOutputFormat) => void
 }
 
 export const ConverterActions = ({
   isProcessing,
   isDownloading,
-  hasJsonOutput,
+  hasPreviewOutput,
+  exportSettings,
   statusMessage,
   onConvertClick,
   onDownloadClick,
+  onDetailLevelChange,
+  onOutputFormatChange,
 }: ConverterActionsProps) => {
   const { t } = useTranslation()
 
@@ -31,11 +45,18 @@ export const ConverterActions = ({
       </h2>
       <p className="mt-1.5 text-xs leading-relaxed text-zinc-400">{t('export.description')}</p>
 
-      <div className="mt-4 grid grid-cols-[1.35fr_1fr] gap-2">
+      <ExportSettingsPanel
+        exportSettings={exportSettings}
+        onDetailLevelChange={onDetailLevelChange}
+        onOutputFormatChange={onOutputFormatChange}
+      />
+
+      <div className={twMerge('mt-4', EXPORT_TWO_COLUMN_GRID_CLASS)}>
         <ConvertActionButton isProcessing={isProcessing} onConvertClick={onConvertClick} />
         <DownloadActionButton
+          outputFormat={exportSettings.outputFormat}
           isDownloading={isDownloading}
-          isDisabled={!hasJsonOutput}
+          isDisabled={!hasPreviewOutput}
           onDownloadClick={onDownloadClick}
         />
       </div>
