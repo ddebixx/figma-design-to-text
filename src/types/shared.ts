@@ -1,3 +1,5 @@
+import type { ConversionPayload } from "./conversionPayloadSchema"
+
 export const PluginMessageType = {
   CONVERT_SELECTION: 'CONVERT_SELECTION',
   CONVERSION_RESULT: 'CONVERSION_RESULT',
@@ -16,5 +18,7 @@ export type PluginToUiMessage =
 
 export type ConversionState =
   | { status: 'idle' }
-  | { status: 'success'; payload: unknown }
+  | { status: 'success'; payload: ConversionPayload }
   | { status: 'error'; errorMessage: string }
+
+export type { ConversionPayload }
