@@ -1,32 +1,71 @@
 {
   "app": {
     "title": "Figson Converter",
-    "description": "Konwertuj ramki Figma na JSON przyjazny dla AI"
+    "description": "Konwertuj ramki Figma na eksporty gotowe do AI"
   },
   "language": { "label": "Język" },
   "actions": {
-    "convert": "Konwertuj do JSON",
+    "convert": "Konwertuj zaznaczenie",
     "converting": "Konwertowanie...",
-    "download": "Pobierz JSON",
+    "download": "Pobierz {{format}}",
     "downloading": "Pobieranie..."
   },
   "export": {
     "heading": "Eksportuj zaznaczenie",
-    "description": "Zaznacz frame w Figma, a następnie konwertuj."
+    "description": "Zaznacz frame lub komponent w Figma, a następnie konwertuj z preferowanym poziomem szczegółowości i formatem.",
+    "detailLevel": {
+      "label": "Poziom szczegółowości",
+      "options": {
+        "precise": {
+          "label": "Precyzyjny",
+          "hint": "Pełny oczyszczony eksport — najlepsza wierność, najwięcej tokenów."
+        },
+        "balanced": {
+          "label": "Zbalansowany",
+          "hint": "Usuwa szum, np. ID i metadane layoutu — dobry domyślny wybór."
+        },
+        "efficient": {
+          "label": "Efektywny",
+          "hint": "Kompresja semantyczna — najmniej tokenów, idealna do promptów LLM."
+        }
+      }
+    },
+    "outputFormat": {
+      "label": "Format wyjściowy",
+      "options": {
+        "json": {
+          "label": "JSON",
+          "hint": "Strukturalny JSON — precyzyjny i przyjazny maszynom."
+        },
+        "yaml": {
+          "label": "YAML",
+          "hint": "Kompaktowy DSL — świetna czytelność przy mniejszej liczbie tokenów."
+        },
+        "markdown": {
+          "label": "Markdown",
+          "hint": "Uporządkowany zarys — łatwy do dzielenia na kontekst LLM."
+        },
+        "text": {
+          "label": "Tekst",
+          "hint": "Krótkie podsumowanie tekstowe — szybkie do przejrzenia, mniej szczegółów."
+        }
+      }
+    }
   },
   "output": {
-    "title": "Wynik JSON",
-    "empty": "Skonwertuj zaznaczenie, aby zobaczyć JSON.",
-    "hint": "Kompaktowy JSON dla narzędzi AI — pobierz JSON poniżej.",
+    "title": "Podgląd eksportu",
+    "empty": "Skonwertuj zaznaczenie, aby zobaczyć podgląd {{format}} tutaj.",
+    "hint": "Dostosuj poziom szczegółowości i format powyżej, a następnie pobierz.",
     "lineCount": "{{count}} wierszy",
-    "codeRegion": "Wynik JSON z numerami wierszy"
+    "codeRegion": "Podgląd eksportu z numerami wierszy"
   },
   "status": {
     "processing": "Przetwarzanie zaznaczenia...",
     "processingSuccess": "Konwersja zakończona",
     "processingError": "Konwersja nie powiodła się",
+    "invalidPayload": "Konwersja zwróciła nieprawidłowe dane",
     "downloading": "Przygotowywanie pobierania...",
-    "downloadSuccess": "JSON pobrany",
+    "downloadSuccess": "Pobrano eksport {{format}}",
     "downloadError": "Pobieranie nie powiodło się",
     "noOutput": "Brak danych do pobrania"
   }

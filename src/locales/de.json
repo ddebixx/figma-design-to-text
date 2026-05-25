@@ -1,32 +1,71 @@
 {
   "app": {
     "title": "Figson Converter",
-    "description": "Figma-Frames in KI-freundliches JSON konvertieren"
+    "description": "Figma-Frames in KI-freundliche Exporte konvertieren"
   },
   "language": { "label": "Sprache" },
   "actions": {
-    "convert": "In JSON konvertieren",
+    "convert": "Auswahl konvertieren",
     "converting": "Konvertierung...",
-    "download": "JSON herunterladen",
+    "download": "{{format}} herunterladen",
     "downloading": "Download..."
   },
   "export": {
     "heading": "Auswahl exportieren",
-    "description": "Wählen Sie einen Frame in Figma und konvertieren Sie ihn."
+    "description": "Wählen Sie einen Frame oder eine Komponente in Figma und konvertieren Sie mit Detailstufe und Format.",
+    "detailLevel": {
+      "label": "Detailstufe",
+      "options": {
+        "precise": {
+          "label": "Präzise",
+          "hint": "Vollständiger bereinigter Export — beste Genauigkeit, meiste Tokens."
+        },
+        "balanced": {
+          "label": "Ausgewogen",
+          "hint": "Entfernt Rauschen wie IDs und Layout-Metadaten — guter Standard."
+        },
+        "efficient": {
+          "label": "Effizient",
+          "hint": "Semantische Komprimierung — wenigste Tokens, ideal für LLM-Prompts."
+        }
+      }
+    },
+    "outputFormat": {
+      "label": "Ausgabeformat",
+      "options": {
+        "json": {
+          "label": "JSON",
+          "hint": "Strukturiertes JSON — präzise und maschinenfreundlich."
+        },
+        "yaml": {
+          "label": "YAML",
+          "hint": "Kompakte DSL — hervorragende Lesbarkeit mit weniger Tokens."
+        },
+        "markdown": {
+          "label": "Markdown",
+          "hint": "Gliederung in Abschnitten — einfach für LLM-Kontext zu chunken."
+        },
+        "text": {
+          "label": "Text",
+          "hint": "Kurze Textzusammenfassung — schnell erfassbar, wenig Detail."
+        }
+      }
+    }
   },
   "output": {
-    "title": "JSON-Ausgabe",
-    "empty": "Konvertieren Sie eine Auswahl, um JSON zu sehen.",
-    "hint": "Kompaktes JSON für KI-Tools — JSON unten herunterladen.",
+    "title": "Exportvorschau",
+    "empty": "Konvertieren Sie eine Auswahl, um die {{format}}-Vorschau zu sehen.",
+    "hint": "Detailstufe und Format oben anpassen, dann herunterladen.",
     "lineCount": "{{count}} Zeilen",
-    "codeRegion": "JSON-Ausgabe mit Zeilennummern"
+    "codeRegion": "Exportvorschau mit Zeilennummern"
   },
   "status": {
     "processing": "Auswahl wird verarbeitet...",
     "processingSuccess": "Konvertierung abgeschlossen",
     "processingError": "Konvertierung fehlgeschlagen",
+    "invalidPayload": "Die Konvertierung lieferte eine ungültige Nutzlast",
     "downloading": "Download wird vorbereitet...",
-    "downloadSuccess": "JSON heruntergeladen",
+    "downloadSuccess": "{{format}}-Export heruntergeladen",
     "downloadError": "Download fehlgeschlagen",
     "noOutput": "Noch nichts zum Herunterladen"
   }

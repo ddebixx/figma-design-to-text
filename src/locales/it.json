@@ -1,32 +1,71 @@
 {
   "app": {
     "title": "Figson Converter",
-    "description": "Converti frame Figma in JSON per l'AI"
+    "description": "Converti frame Figma in export pronti per l'AI"
   },
   "language": { "label": "Lingua" },
   "actions": {
-    "convert": "Converti in JSON",
+    "convert": "Converti selezione",
     "converting": "Conversione...",
-    "download": "Scarica JSON",
+    "download": "Scarica {{format}}",
     "downloading": "Download..."
   },
   "export": {
     "heading": "Esporta selezione",
-    "description": "Seleziona un frame in Figma, poi converti."
+    "description": "Seleziona un frame o componente in Figma, poi converti con livello di dettaglio e formato preferiti.",
+    "detailLevel": {
+      "label": "Livello di dettaglio",
+      "options": {
+        "precise": {
+          "label": "Preciso",
+          "hint": "Export completo ripulito — massima fedeltà, più token."
+        },
+        "balanced": {
+          "label": "Bilanciato",
+          "hint": "Rimuove rumore come ID e metadati di layout — buon default."
+        },
+        "efficient": {
+          "label": "Efficiente",
+          "hint": "Compressione semantica — meno token, ideale per prompt LLM."
+        }
+      }
+    },
+    "outputFormat": {
+      "label": "Formato di output",
+      "options": {
+        "json": {
+          "label": "JSON",
+          "hint": "JSON strutturato — preciso e adatto alle macchine."
+        },
+        "yaml": {
+          "label": "YAML",
+          "hint": "DSL compatta — ottima leggibilità con meno token."
+        },
+        "markdown": {
+          "label": "Markdown",
+          "hint": "Schema a sezioni — facile da suddividere per il contesto LLM."
+        },
+        "text": {
+          "label": "Testo",
+          "hint": "Breve riassunto testuale — veloce da scansionare, meno dettaglio."
+        }
+      }
+    }
   },
   "output": {
-    "title": "Output JSON",
-    "empty": "Converti una selezione per vedere il JSON.",
-    "hint": "JSON compatto per strumenti IA — usa Scarica JSON qui sotto.",
+    "title": "Anteprima export",
+    "empty": "Converti una selezione per vedere l'anteprima {{format}} qui.",
+    "hint": "Regola livello di dettaglio e formato sopra, poi scarica.",
     "lineCount": "{{count}} righe",
-    "codeRegion": "Output JSON con numeri di riga"
+    "codeRegion": "Anteprima export con numeri di riga"
   },
   "status": {
     "processing": "Elaborazione selezione...",
     "processingSuccess": "Conversione completata",
     "processingError": "Conversione non riuscita",
+    "invalidPayload": "La conversione ha restituito un payload non valido",
     "downloading": "Preparazione download...",
-    "downloadSuccess": "JSON scaricato",
+    "downloadSuccess": "Export {{format}} scaricato",
     "downloadError": "Download non riuscito",
     "noOutput": "Niente da scaricare"
   }

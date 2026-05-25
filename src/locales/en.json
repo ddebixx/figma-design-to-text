@@ -1,34 +1,73 @@
 {
   "app": {
     "title": "Figson Converter",
-    "description": "Convert Figma frames to AI-ready JSON"
+    "description": "Convert Figma frames to AI-ready exports"
   },
   "language": {
     "label": "Language"
   },
   "actions": {
-    "convert": "Convert to JSON",
+    "convert": "Convert selection",
     "converting": "Converting...",
-    "download": "Download JSON",
+    "download": "Download {{format}}",
     "downloading": "Downloading..."
   },
   "export": {
     "heading": "Export selection",
-    "description": "Select a frame or component in Figma, then convert."
+    "description": "Select a frame or component in Figma, then convert with your preferred detail and format.",
+    "detailLevel": {
+      "label": "Detail level",
+      "options": {
+        "precise": {
+          "label": "Precise",
+          "hint": "Full cleaned JSON — best fidelity, largest token use."
+        },
+        "balanced": {
+          "label": "Balanced",
+          "hint": "Removes noise like IDs and layout metadata — good default."
+        },
+        "efficient": {
+          "label": "Efficient",
+          "hint": "Semantic compression — smallest tokens, best for LLM prompts."
+        }
+      }
+    },
+    "outputFormat": {
+      "label": "Output format",
+      "options": {
+        "json": {
+          "label": "JSON",
+          "hint": "Structured JSON — precise and machine-friendly."
+        },
+        "yaml": {
+          "label": "YAML",
+          "hint": "Compact DSL — excellent readability with fewer tokens."
+        },
+        "markdown": {
+          "label": "Markdown",
+          "hint": "Sectioned outline — easy to chunk for LLM context."
+        },
+        "text": {
+          "label": "Text",
+          "hint": "Tiny text summary — fastest to scan, least detail."
+        }
+      }
+    }
   },
   "output": {
-    "title": "JSON output",
-    "empty": "Convert a selection to see JSON here.",
-    "hint": "Compact JSON for AI tools — use Download JSON below.",
+    "title": "Export preview",
+    "empty": "Convert a selection to see the {{format}} preview here.",
+    "hint": "Adjust detail level and format above, then download when ready.",
     "lineCount": "{{count}} lines",
-    "codeRegion": "JSON output with line numbers"
+    "codeRegion": "Export preview with line numbers"
   },
   "status": {
     "processing": "Processing selection...",
     "processingSuccess": "Conversion complete",
     "processingError": "Conversion failed",
+    "invalidPayload": "Conversion returned an invalid payload",
     "downloading": "Preparing download...",
-    "downloadSuccess": "JSON downloaded",
+    "downloadSuccess": "{{format}} export downloaded",
     "downloadError": "Download failed",
     "noOutput": "Nothing to download yet"
   }

@@ -1,32 +1,71 @@
 {
   "app": {
     "title": "Figson Converter",
-    "description": "Convertir des frames Figma en JSON compatible IA"
+    "description": "Convertir des frames Figma en exports compatibles IA"
   },
   "language": { "label": "Langue" },
   "actions": {
-    "convert": "Convertir en JSON",
+    "convert": "Convertir la sélection",
     "converting": "Conversion...",
-    "download": "Télécharger le JSON",
+    "download": "Télécharger {{format}}",
     "downloading": "Téléchargement..."
   },
   "export": {
     "heading": "Exporter la sélection",
-    "description": "Sélectionnez un frame dans Figma, puis convertissez."
+    "description": "Sélectionnez un frame ou un composant dans Figma, puis convertissez avec le niveau de détail et le format souhaités.",
+    "detailLevel": {
+      "label": "Niveau de détail",
+      "options": {
+        "precise": {
+          "label": "Précis",
+          "hint": "Export complet nettoyé — meilleure fidélité, plus de tokens."
+        },
+        "balanced": {
+          "label": "Équilibré",
+          "hint": "Supprime le bruit comme les IDs et métadonnées de mise en page — bon choix par défaut."
+        },
+        "efficient": {
+          "label": "Efficace",
+          "hint": "Compression sémantique — moins de tokens, idéal pour les prompts LLM."
+        }
+      }
+    },
+    "outputFormat": {
+      "label": "Format de sortie",
+      "options": {
+        "json": {
+          "label": "JSON",
+          "hint": "JSON structuré — précis et adapté aux machines."
+        },
+        "yaml": {
+          "label": "YAML",
+          "hint": "DSL compact — excellente lisibilité avec moins de tokens."
+        },
+        "markdown": {
+          "label": "Markdown",
+          "hint": "Plan structuré — facile à découper pour le contexte LLM."
+        },
+        "text": {
+          "label": "Texte",
+          "hint": "Résumé textuel minimal — rapide à parcourir, moins de détail."
+        }
+      }
+    }
   },
   "output": {
-    "title": "Sortie JSON",
-    "empty": "Convertissez une sélection pour afficher le JSON.",
-    "hint": "JSON compact pour les outils IA — utilisez Télécharger le JSON ci-dessous.",
+    "title": "Aperçu de l'export",
+    "empty": "Convertissez une sélection pour voir l'aperçu {{format}} ici.",
+    "hint": "Ajustez le niveau de détail et le format ci-dessus, puis téléchargez.",
     "lineCount": "{{count}} lignes",
-    "codeRegion": "Sortie JSON avec numéros de ligne"
+    "codeRegion": "Aperçu de l'export avec numéros de ligne"
   },
   "status": {
     "processing": "Traitement de la sélection...",
     "processingSuccess": "Conversion terminée",
     "processingError": "Échec de la conversion",
+    "invalidPayload": "La conversion a renvoyé une charge utile invalide",
     "downloading": "Préparation du téléchargement...",
-    "downloadSuccess": "JSON téléchargé",
+    "downloadSuccess": "Export {{format}} téléchargé",
     "downloadError": "Échec du téléchargement",
     "noOutput": "Rien à télécharger pour le moment"
   }

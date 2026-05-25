@@ -1,32 +1,71 @@
 {
   "app": {
     "title": "Figson Converter",
-    "description": "FigmaフレームをAI向けJSONに変換"
+    "description": "FigmaフレームをAI向けエクスポートに変換"
   },
   "language": { "label": "言語" },
   "actions": {
-    "convert": "JSONに変換",
+    "convert": "選択範囲を変換",
     "converting": "変換中...",
-    "download": "JSONをダウンロード",
+    "download": "{{format}}をダウンロード",
     "downloading": "ダウンロード中..."
   },
   "export": {
     "heading": "選択範囲をエクスポート",
-    "description": "Figmaでフレームを選択してから変換します。"
+    "description": "Figmaでフレームまたはコンポーネントを選択し、詳細度と形式を選んで変換します。",
+    "detailLevel": {
+      "label": "詳細度",
+      "options": {
+        "precise": {
+          "label": "精密",
+          "hint": "完全なクリーンエクスポート — 最高の忠実度、最多トークン。"
+        },
+        "balanced": {
+          "label": "バランス",
+          "hint": "IDやレイアウトメタデータなどのノイズを削除 — おすすめのデフォルト。"
+        },
+        "efficient": {
+          "label": "効率",
+          "hint": "意味的圧縮 — 最少トークン、LLMプロンプトに最適。"
+        }
+      }
+    },
+    "outputFormat": {
+      "label": "出力形式",
+      "options": {
+        "json": {
+          "label": "JSON",
+          "hint": "構造化JSON — 正確で機械向き。"
+        },
+        "yaml": {
+          "label": "YAML",
+          "hint": "コンパクトなDSL — トークンを抑えつつ読みやすい。"
+        },
+        "markdown": {
+          "label": "Markdown",
+          "hint": "セクション構成 — LLMコンテキストに分割しやすい。"
+        },
+        "text": {
+          "label": "テキスト",
+          "hint": "短いテキスト要約 — 素早く把握、詳細は少なめ。"
+        }
+      }
+    }
   },
   "output": {
-    "title": "JSON出力",
-    "empty": "選択範囲を変換するとJSONが表示されます。",
-    "hint": "AI向けのコンパクトJSON — 下の「JSONをダウンロード」を使用してください。",
+    "title": "エクスポートプレビュー",
+    "empty": "選択範囲を変換すると{{format}}プレビューがここに表示されます。",
+    "hint": "上で詳細度と形式を調整してからダウンロードしてください。",
     "lineCount": "{{count}} 行",
-    "codeRegion": "行番号付きのJSON出力"
+    "codeRegion": "行番号付きのエクスポートプレビュー"
   },
   "status": {
     "processing": "選択範囲を処理中...",
     "processingSuccess": "変換が完了しました",
     "processingError": "変換に失敗しました",
+    "invalidPayload": "変換結果のデータ形式が無効です",
     "downloading": "ダウンロードを準備中...",
-    "downloadSuccess": "JSONをダウンロードしました",
+    "downloadSuccess": "{{format}}エクスポートをダウンロードしました",
     "downloadError": "ダウンロードに失敗しました",
     "noOutput": "ダウンロードできる内容がありません"
   }

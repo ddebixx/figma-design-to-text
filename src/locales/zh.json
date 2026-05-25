@@ -1,32 +1,71 @@
 {
   "app": {
     "title": "Figson Converter",
-    "description": "将 Figma 画框转换为 AI 友好的 JSON"
+    "description": "将 Figma 画框转换为 AI 友好的导出内容"
   },
   "language": { "label": "语言" },
   "actions": {
-    "convert": "转换为 JSON",
+    "convert": "转换所选内容",
     "converting": "转换中...",
-    "download": "下载 JSON",
+    "download": "下载 {{format}}",
     "downloading": "下载中..."
   },
   "export": {
     "heading": "导出所选内容",
-    "description": "在 Figma 中选择画框，然后转换。"
+    "description": "在 Figma 中选择画框或组件，然后按所需的详细程度和格式进行转换。",
+    "detailLevel": {
+      "label": "详细程度",
+      "options": {
+        "precise": {
+          "label": "精确",
+          "hint": "完整清理后的导出 — 保真度最高，token 用量最大。"
+        },
+        "balanced": {
+          "label": "平衡",
+          "hint": "移除 ID 和布局元数据等噪声 — 推荐的默认选项。"
+        },
+        "efficient": {
+          "label": "高效",
+          "hint": "语义压缩 — token 最少，最适合 LLM 提示。"
+        }
+      }
+    },
+    "outputFormat": {
+      "label": "输出格式",
+      "options": {
+        "json": {
+          "label": "JSON",
+          "hint": "结构化 JSON — 精确且便于机器处理。"
+        },
+        "yaml": {
+          "label": "YAML",
+          "hint": "紧凑 DSL — 可读性强且 token 更少。"
+        },
+        "markdown": {
+          "label": "Markdown",
+          "hint": "分段大纲 — 便于拆分 LLM 上下文。"
+        },
+        "text": {
+          "label": "文本",
+          "hint": "简短文本摘要 — 浏览最快，细节最少。"
+        }
+      }
+    }
   },
   "output": {
-    "title": "JSON 输出",
-    "empty": "转换所选内容以查看 JSON。",
-    "hint": "适用于 AI 工具的精简 JSON — 请使用下方的下载 JSON。",
+    "title": "导出预览",
+    "empty": "转换所选内容后，可在此查看 {{format}} 预览。",
+    "hint": "在上方调整详细程度和格式，然后下载。",
     "lineCount": "{{count}} 行",
-    "codeRegion": "带行号的 JSON 输出"
+    "codeRegion": "带行号的导出预览"
   },
   "status": {
     "processing": "正在处理所选内容...",
     "processingSuccess": "转换完成",
     "processingError": "转换失败",
+    "invalidPayload": "转换返回了无效的数据",
     "downloading": "正在准备下载...",
-    "downloadSuccess": "JSON 已下载",
+    "downloadSuccess": "已下载 {{format}} 导出",
     "downloadError": "下载失败",
     "noOutput": "暂无可下载内容"
   }
