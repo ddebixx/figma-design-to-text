@@ -5,7 +5,8 @@ import type { JsonObject } from '@/utils/isJsonObject'
 
 const formatNodeAsMarkdown = (node: JsonObject, depth: number): string => {
   const indent = '  '.repeat(depth)
-  const { elementKind, nodeLabel, dimensions, fill, characters } = resolveNodeDisplayProperties(node)
+  const { elementKind, nodeLabel, dimensions, fill, characters } =
+    resolveNodeDisplayProperties(node)
   const size = dimensions ? ` (${dimensions})` : ''
   const fillPart = fill ? ` · ${fill}` : ''
   const chars = characters ? `: "${characters}"` : ''

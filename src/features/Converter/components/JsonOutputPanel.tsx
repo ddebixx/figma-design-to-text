@@ -5,7 +5,10 @@ import { twMerge } from 'tailwind-merge'
 import { Button } from '@/components/ui/button'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { JsonCodeView } from '@/features/Converter/components/JsonCodeView'
-import { CODE_PANEL_CLASS, OUTLINE_BUTTON_CLASS } from '@/features/Converter/consts/glassPanelStyles'
+import {
+  CODE_PANEL_CLASS,
+  OUTLINE_BUTTON_CLASS,
+} from '@/features/Converter/consts/glassPanelStyles'
 import type { ExportOutputFormat } from '@/features/Converter/export/types/exportSettings'
 
 type JsonOutputPanelProps = {

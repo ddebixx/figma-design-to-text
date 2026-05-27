@@ -6,7 +6,10 @@ import { JsonCodeLine } from '@/features/Converter/components/JsonCodeLine'
 import { SCROLLBAR_CLASS } from '@/features/Converter/consts/glassPanelStyles'
 import { resolveExportFormatLabel } from '@/features/Converter/export/resolve/resolveExportFormatLabel'
 import type { ExportOutputFormat } from '@/features/Converter/export/types/exportSettings'
-import { buildCodeDisplayLines, buildPlainDisplayLines } from '@/features/Converter/preview/buildJsonDisplayLines'
+import {
+  buildCodeDisplayLines,
+  buildPlainDisplayLines,
+} from '@/features/Converter/preview/buildJsonDisplayLines'
 import {
   type CodeHighlighter,
   loadCodeHighlighter,
@@ -40,7 +43,7 @@ export const JsonCodeView = ({
   outputFormat,
 }: JsonCodeViewProps) => {
   const { t } = useTranslation()
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const scrollContainerRef = useRef<HTMLElement>(null)
   const [highlighter, setHighlighter] = useState<CodeHighlighter | null>(null)
 
   useEffect(() => {
@@ -48,9 +51,7 @@ export const JsonCodeView = ({
       try {
         const instance = await loadCodeHighlighter()
         setHighlighter(instance)
-      } catch {
-        
-      }
+      } catch {}
     }
 
     initializeCodeHighlighter()
@@ -107,10 +108,9 @@ export const JsonCodeView = ({
         {t('output.lineCount', { count: lineCount })}
       </p>
 
-      <div
+      <section
         ref={scrollContainerRef}
         className={scrollViewportClass}
-        role="region"
         aria-label={t('output.codeRegion')}
       >
         <div className="relative w-full py-2" style={{ height: virtualList.getTotalSize() }}>
@@ -126,15 +126,12 @@ export const JsonCodeView = ({
                   transform: `translateY(${virtualRow.start}px)`,
                 }}
               >
-                <JsonCodeLine
-                  line={line}
-                  lineNumberClass={lineNumberClass}
-                />
+                <JsonCodeLine line={line} lineNumberClass={lineNumberClass} />
               </div>
             )
           })}
         </div>
-      </div>
+      </section>
     </div>
   )
 }

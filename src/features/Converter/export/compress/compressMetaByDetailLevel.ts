@@ -1,5 +1,5 @@
-import type { ConversionMeta } from '@/types/conversionPayloadSchema'
 import type { ExportDetailLevel } from '@/features/Converter/export/types/exportSettings'
+import type { ConversionMeta } from '@/types/conversionPayloadSchema'
 import type { JsonObject } from '@/utils/isJsonObject'
 
 export const compressMetaByDetailLevel = (

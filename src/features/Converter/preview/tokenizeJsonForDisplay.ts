@@ -5,8 +5,17 @@ import type { ExportOutputFormat } from '@/features/Converter/export/types/expor
 export type CodeHighlighter = HighlighterCore
 
 export type CodeDisplayToken = {
+  id: string
   content: string
   color: string
+}
+
+export const buildCodeDisplayTokenId = (
+  lineIndex: number,
+  tokenOffset: number,
+  content: string,
+): string => {
+  return `${lineIndex}-${tokenOffset}-${content.length}`
 }
 
 const SHIKI_THEME = 'tokyo-night'
@@ -38,7 +47,13 @@ export const loadCodeHighlighter = async (): Promise<CodeHighlighter> => {
 }
 
 const buildPlainTokenLines = (content: string): CodeDisplayToken[][] => {
-  return content.split('\n').map((line) => [{ content: line, color: '' }])
+  return content.split('\n').map((line, lineIndex) => [
+    {
+      id: buildCodeDisplayTokenId(lineIndex, 0, line),
+      content: line,
+      color: '',
+    },
+  ])
 }
 
 export const tokenizeCodeContent = (
@@ -58,12 +73,22 @@ export const tokenizeCodeContent = (
       theme: SHIKI_THEME,
     })
 
-    return tokens.map((lineTokens) =>
-      lineTokens.map((token) => ({
-        content: token.content,
-        color: token.color ?? '',
-      })),
-    )
+    return tokens.map((lineTokens, lineIndex) => {
+      let tokenOffset = 0
+
+      return lineTokens.map((token) => {
+        const content = token.content
+        const nextToken: CodeDisplayToken = {
+          id: buildCodeDisplayTokenId(lineIndex, tokenOffset, content),
+          content,
+          color: token.color ?? '',
+        }
+
+        tokenOffset += content.length
+
+        return nextToken
+      })
+    })
   } catch {
     return buildPlainTokenLines(content)
   }

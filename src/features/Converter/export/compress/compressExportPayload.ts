@@ -1,10 +1,7 @@
 import { compressMetaByDetailLevel } from '@/features/Converter/export/compress/compressMetaByDetailLevel'
 import { compressNodeByDetailLevel } from '@/features/Converter/export/compress/compressNodeByDetailLevel'
 import type { ExportDetailLevel } from '@/features/Converter/export/types/exportSettings'
-import type {
-  ConversionPayload,
-  ExportRenderablePayload,
-} from '@/types/conversionPayloadSchema'
+import type { ConversionPayload, ExportRenderablePayload } from '@/types/conversionPayloadSchema'
 
 export const compressExportPayload = (
   payload: ConversionPayload,

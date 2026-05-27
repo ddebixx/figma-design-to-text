@@ -1,4 +1,4 @@
-import type { ConversionPayload } from "./conversionPayloadSchema"
+import type { ConversionPayload } from './conversionPayloadSchema'
 
 export const PluginMessageType = {
   CONVERT_SELECTION: 'CONVERT_SELECTION',

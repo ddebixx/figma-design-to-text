@@ -34,9 +34,7 @@ export const DownloadActionButton = ({
       aria-busy={isDownloading}
     >
       {isDownloading ? <Spinner className="mr-2" /> : null}
-      {isDownloading
-        ? t('actions.downloading')
-        : t('actions.download', { format: formatLabel })}
+      {isDownloading ? t('actions.downloading') : t('actions.download', { format: formatLabel })}
     </Button>
   )
 }

@@ -9,10 +9,13 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import {
+  EXPORT_SELECT_CONTENT_CLASS,
+  EXPORT_TWO_COLUMN_GRID_CLASS,
+} from '@/features/Converter/export/consts/exportSelectStyles'
+import {
   EXPORT_DETAIL_LEVEL_OPTIONS,
   EXPORT_OUTPUT_FORMAT_OPTIONS,
 } from '@/features/Converter/export/consts/exportSettings'
-import { EXPORT_SELECT_CONTENT_CLASS, EXPORT_TWO_COLUMN_GRID_CLASS } from '@/features/Converter/export/consts/exportSelectStyles'
 import type {
   ExportDetailLevel,
   ExportOutputFormat,

@@ -1,6 +1,6 @@
 import { z } from 'zod'
-import { PluginMessageType } from './shared'
 import type { PluginToUiMessage } from './shared'
+import { PluginMessageType } from './shared'
 
 const PluginErrorMessageSchema = z.object({
   type: z.literal(PluginMessageType.PLUGIN_ERROR),

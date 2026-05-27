@@ -1,7 +1,7 @@
 import { LoadingOperationType } from '@/features/Converter/workflow/types/loadingOperation'
 import type { StatusMessageState } from '@/features/Converter/workflow/types/statusMessage'
-import { ConversionPayloadSchema } from '@/types/conversionPayloadSchema'
 import { i18n } from '@/lib/i18n'
+import { ConversionPayloadSchema } from '@/types/conversionPayloadSchema'
 import { type ConversionState, PluginMessageType, type PluginToUiMessage } from '@/types/shared'
 
 type ApplyConversionMessageParams = {
@@ -31,7 +31,10 @@ const mapPluginMessageToConversionState = (message: PluginToUiMessage): Conversi
 
 const resolveConversionStatusMessage = (conversionState: ConversionState): StatusMessageState => {
   if (conversionState.status === 'error') {
-    return { variant: 'error', text: conversionState.errorMessage || i18n.t('status.processingError') }
+    return {
+      variant: 'error',
+      text: conversionState.errorMessage || i18n.t('status.processingError'),
+    }
   }
 
   return { variant: 'success', text: i18n.t('status.processingSuccess') }

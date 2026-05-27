@@ -1,4 +1,3 @@
-import type { ExportDetailLevel } from '@/features/Converter/export/types/exportSettings'
 import {
   BALANCED_NODE_OMIT_KEYS,
   EFFICIENT_NODE_OMIT_KEYS,
@@ -9,6 +8,7 @@ import {
   omitKeysFromNode,
   simplifyNodeFills,
 } from '@/features/Converter/export/compress/nodeCompressionHelpers'
+import type { ExportDetailLevel } from '@/features/Converter/export/types/exportSettings'
 import type { JsonObject } from '@/utils/isJsonObject'
 
 type NodeCompressionConfig = {

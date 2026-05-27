@@ -1,4 +1,7 @@
-import type { CodeDisplayToken } from '@/features/Converter/preview/tokenizeJsonForDisplay'
+import {
+  buildCodeDisplayTokenId,
+  type CodeDisplayToken,
+} from '@/features/Converter/preview/tokenizeJsonForDisplay'
 
 export type CodeDisplayLine = {
   id: string
@@ -25,7 +28,13 @@ export const buildPlainDisplayLines = (content: string): CodeDisplayLine[] => {
     return {
       id: `line-${lineNumber}`,
       lineNumber,
-      tokens: [{ content: lineContent, color: '' }],
+      tokens: [
+        {
+          id: buildCodeDisplayTokenId(lineIndex, 0, lineContent),
+          content: lineContent,
+          color: '',
+        },
+      ],
     }
   })
 }

@@ -12,11 +12,8 @@ export const JsonCodeLine = ({ line, lineNumberClass }: JsonCodeLineProps) => {
         {line.lineNumber}
       </span>
       <code className="min-w-0 flex-1 whitespace-pre px-3">
-        {line.tokens.map((token, tokenIndex) => (
-          <span
-            key={`${line.id}-${tokenIndex}`}
-            style={token.color ? { color: token.color } : undefined}
-          >
+        {line.tokens.map((token) => (
+          <span key={token.id} style={token.color ? { color: token.color } : undefined}>
             {token.content}
           </span>
         ))}
