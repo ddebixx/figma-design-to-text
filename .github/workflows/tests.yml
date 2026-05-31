@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 22.12
           cache: npm
 
       - name: Install dependencies
@@ -27,9 +27,7 @@ jobs:
 
       - name: Upload test coverage
         uses: actions/upload-artifact@v4
-        if: always()
+        if: success()
         with:
           name: test-coverage
-          path: |
-            coverage/coverage-final.json
-            coverage/lcov.info
+          path: coverage/
