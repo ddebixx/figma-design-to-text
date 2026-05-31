@@ -1,7 +1,7 @@
 import { twMerge } from 'tailwind-merge'
 import { PLUGIN_UI_WIDTH } from '@/consts/pluginUiSize'
-import { Converter } from '@/features/Converter/Converter'
-import { SCROLLBAR_CLASS } from '@/features/Converter/consts/glassPanelStyles'
+import { Converter } from '@/features/Converter/components/Converter'
+import { SCROLLBAR_CLASS } from '@/features/Converter/consts/styles'
 
 export const App = () => {
   const mainClass = twMerge(

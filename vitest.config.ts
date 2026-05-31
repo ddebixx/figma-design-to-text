@@ -12,14 +12,21 @@ export default defineConfig({
   plugins: [tailwindcss(), react()],
   test: {
     environment: 'happy-dom',
+    setupFiles: ['./src/test/setup.ts'],
     include: ['src/**/*.{test,spec}.{ts,tsx}'],
     exclude: ['dist/**', 'node_modules/**'],
     passWithNoTests: true,
     coverage: {
       provider: 'v8',
       reporter: ['text', 'lcov'],
-      include: ['src/shared/**', 'src/ui/**'],
-      exclude: ['src/**/*.test.ts', 'src/**/*.spec.ts', 'src/ui/main.tsx', 'src/plugin/**'],
+      include: ['src/components/ui/**', 'src/features/Converter/components/**'],
+      exclude: [
+        'src/**/*.test.ts',
+        'src/**/*.test.tsx',
+        'src/**/*.spec.ts',
+        'src/**/*.spec.tsx',
+        'src/**/index.ts',
+      ],
     },
   },
 })

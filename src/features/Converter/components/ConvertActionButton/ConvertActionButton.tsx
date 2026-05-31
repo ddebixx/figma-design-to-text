@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { twMerge } from 'tailwind-merge'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
-import { PRIMARY_BUTTON_CLASS } from '@/features/Converter/consts/glassPanelStyles'
+import { PRIMARY_BUTTON_CLASS } from '@/features/Converter/consts/styles'
 
 type ConvertActionButtonProps = {
   isProcessing: boolean

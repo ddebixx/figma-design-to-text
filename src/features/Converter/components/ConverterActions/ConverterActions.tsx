@@ -4,7 +4,7 @@ import { ConvertActionButton } from '@/features/Converter/components/ConvertActi
 import { ConverterStatusLabel } from '@/features/Converter/components/ConverterStatusLabel'
 import { DownloadActionButton } from '@/features/Converter/components/DownloadActionButton'
 import { ExportSettingsPanel } from '@/features/Converter/components/ExportSettingsPanel'
-import { SECTION_CLASS } from '@/features/Converter/consts/glassPanelStyles'
+import { SECTION_CLASS } from '@/features/Converter/consts/styles'
 import { EXPORT_TWO_COLUMN_GRID_CLASS } from '@/features/Converter/export/consts/exportSelectStyles'
 import type {
   ExportDetailLevel,

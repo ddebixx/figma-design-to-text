@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { twMerge } from 'tailwind-merge'
 import { JsonCodeLine } from '@/features/Converter/components/JsonCodeLine'
-import { SCROLLBAR_CLASS } from '@/features/Converter/consts/glassPanelStyles'
+import { SCROLLBAR_CLASS } from '@/features/Converter/consts/styles'
 import { resolveExportFormatLabel } from '@/features/Converter/export/resolve/resolveExportFormatLabel'
 import type { ExportOutputFormat } from '@/features/Converter/export/types/exportSettings'
 import {

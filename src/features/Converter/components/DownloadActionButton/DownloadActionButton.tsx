@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { twMerge } from 'tailwind-merge'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
-import { SECONDARY_BUTTON_CLASS } from '@/features/Converter/consts/glassPanelStyles'
+import { SECONDARY_BUTTON_CLASS } from '@/features/Converter/consts/styles'
 import { resolveExportFormatLabel } from '@/features/Converter/export/resolve/resolveExportFormatLabel'
 import type { ExportOutputFormat } from '@/features/Converter/export/types/exportSettings'
 

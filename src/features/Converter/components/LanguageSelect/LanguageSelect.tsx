@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { SUPPORTED_LANGUAGES } from '@/consts/supportedLanguages'
-import { LANGUAGE_TRIGGER_CLASS } from '@/features/Converter/consts/glassPanelStyles'
+import { LANGUAGE_TRIGGER_CLASS } from '@/features/Converter/consts/styles'
 import { EXPORT_SELECT_CONTENT_CLASS } from '@/features/Converter/export/consts/exportSelectStyles'
 import { persistLanguage } from '@/lib/i18n'
 import { findSupportedLanguage } from '@/utils/findSupportedLanguage'

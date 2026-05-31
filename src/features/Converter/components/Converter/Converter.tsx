@@ -1,7 +1,7 @@
 import { ConverterActions } from '@/features/Converter/components/ConverterActions'
 import { ConverterHeader } from '@/features/Converter/components/ConverterHeader'
 import { JsonOutputPanel } from '@/features/Converter/components/JsonOutputPanel'
-import { APP_SHELL_CLASS } from '@/features/Converter/consts/glassPanelStyles'
+import { APP_SHELL_CLASS } from '@/features/Converter/consts/styles'
 import { useConverterWorkflow } from '@/features/Converter/workflow/hooks/useConverterWorkflow'
 
 export const Converter = () => {
