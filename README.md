@@ -93,7 +93,3 @@ docs/              Demo GIF/screenshots for README
 - [Shiki](https://shiki.style/) for syntax highlighting
 - [js-yaml](https://github.com/nodeca/js-yaml) for YAML export
 - i18next for translations
-
-## License
-
-Private project — see repository owner for usage terms.
