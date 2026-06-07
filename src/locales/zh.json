@@ -68,5 +68,33 @@
     "downloadSuccess": "已下载 {{format}} 导出",
     "downloadError": "下载失败",
     "noOutput": "暂无可下载内容"
+  },
+  "infoModal": {
+    "triggerLabel": "使用说明",
+    "title": "如何使用 Figson Converter",
+    "description": "按照以下步骤将 Figma 选区转换为可用于 AI 的导出文件。",
+    "warning": {
+      "title": "不同模型的结果可能不同",
+      "description": "不同 AI 模型可能会以不同方式理解同一份导出。请将预览作为起点，并在你的工作流中验证结果。",
+      "screenshotTip": "尽可能同时提供截图与导出内容——视觉上下文有助于模型更准确地理解布局、间距和样式。"
+    },
+    "steps": {
+      "selectFrame": {
+        "title": "选择画框或组件",
+        "description": "在 Figma 中选择要转换的画框、组件或区域。"
+      },
+      "chooseSettings": {
+        "title": "选择细节级别和格式",
+        "description": "设置要保留的结构信息量，并选择最适合你的 AI 工具的导出格式。"
+      },
+      "convertAndPreview": {
+        "title": "转换并检查预览",
+        "description": "运行转换，然后在下载前检查预览内容。"
+      },
+      "downloadExport": {
+        "title": "下载导出文件",
+        "description": "保存文件并将其添加到你的 AI 提示词或自动化流程中。"
+      }
+    }
   }
 }

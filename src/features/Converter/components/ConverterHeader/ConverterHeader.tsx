@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { LanguageSelect } from '@/features/Converter/components/LanguageSelect'
+import { InfoModal } from '@/features/InfoModal/components/InfoModal'
 
 export const ConverterHeader = () => {
   const { t } = useTranslation()
@@ -12,7 +13,10 @@ export const ConverterHeader = () => {
         </h1>
         <p className="mt-1.5 text-xs leading-relaxed text-zinc-400">{t('app.description')}</p>
       </div>
-      <LanguageSelect />
+      <div className="flex shrink-0 items-center gap-2">
+        <InfoModal />
+        <LanguageSelect />
+      </div>
     </header>
   )
 }

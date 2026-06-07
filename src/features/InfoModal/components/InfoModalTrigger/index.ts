@@ -1,0 +1,1 @@
+export { InfoModalTrigger } from './InfoModalTrigger'

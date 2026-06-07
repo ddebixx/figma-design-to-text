@@ -19,7 +19,11 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'lcov'],
-      include: ['src/components/ui/**', 'src/features/Converter/components/**'],
+      include: [
+        'src/components/ui/**',
+        'src/features/Converter/components/**',
+        'src/features/InfoModal/components/**',
+      ],
       exclude: [
         'src/**/*.test.ts',
         'src/**/*.test.tsx',

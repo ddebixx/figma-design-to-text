@@ -1,0 +1,1 @@
+export { InfoModalWarning } from './InfoModalWarning'

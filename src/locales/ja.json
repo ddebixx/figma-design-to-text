@@ -68,5 +68,33 @@
     "downloadSuccess": "{{format}}エクスポートをダウンロードしました",
     "downloadError": "ダウンロードに失敗しました",
     "noOutput": "ダウンロードできる内容がありません"
+  },
+  "infoModal": {
+    "triggerLabel": "使い方",
+    "title": "Figson Converter の使い方",
+    "description": "次の手順で、Figma の選択範囲を AI 向けエクスポートに変換します。",
+    "warning": {
+      "title": "モデルによって結果が異なる場合があります",
+      "description": "同じエクスポートでも、AI モデルによって解釈が変わることがあります。プレビューは出発点として使い、ワークフロー内で結果を確認してください。",
+      "screenshotTip": "可能であればエクスポートにスクリーンショットも添付してください。視覚的な文脈があると、レイアウト・余白・スタイルの理解がより正確になります。"
+    },
+    "steps": {
+      "selectFrame": {
+        "title": "フレームまたはコンポーネントを選択",
+        "description": "Figma で変換したいフレーム、コンポーネント、またはセクションを選択します。"
+      },
+      "chooseSettings": {
+        "title": "詳細レベルと形式を選択",
+        "description": "保持する構造の量と、AI ツールに最適なエクスポート形式を選びます。"
+      },
+      "convertAndPreview": {
+        "title": "変換してプレビューを確認",
+        "description": "変換を実行し、ダウンロード前にプレビューを確認します。"
+      },
+      "downloadExport": {
+        "title": "エクスポートをダウンロード",
+        "description": "ファイルを保存し、AI プロンプトや自動化フローに添付します。"
+      }
+    }
   }
 }

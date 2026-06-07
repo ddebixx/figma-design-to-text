@@ -68,5 +68,33 @@
     "downloadSuccess": "Pobrano eksport {{format}}",
     "downloadError": "Pobieranie nie powiodło się",
     "noOutput": "Brak danych do pobrania"
+  },
+  "infoModal": {
+    "triggerLabel": "Instrukcja",
+    "title": "Jak korzystać z Figson Converter",
+    "description": "Wykonaj te kroki, aby przekształcić zaznaczenia z Figma w eksporty gotowe do użycia z AI.",
+    "warning": {
+      "title": "Wyniki mogą różnić się w zależności od modelu",
+      "description": "Różne modele AI mogą inaczej interpretować ten sam eksport. Traktuj podgląd jako punkt wyjścia i zweryfikuj wyniki w swoim workflow.",
+      "screenshotTip": "Gdy to możliwe, dołącz zrzuty ekranu do eksportu — kontekst wizualny pomaga modelom lepiej zrozumieć układ, odstępy i styl."
+    },
+    "steps": {
+      "selectFrame": {
+        "title": "Zaznacz frame lub komponent",
+        "description": "W Figma zaznacz frame, komponent lub sekcję, którą chcesz przekonwertować."
+      },
+      "chooseSettings": {
+        "title": "Wybierz poziom szczegółowości i format",
+        "description": "Określ, ile struktury zachować i który format eksportu najlepiej pasuje do Twojego narzędzia AI."
+      },
+      "convertAndPreview": {
+        "title": "Konwertuj i sprawdź podgląd",
+        "description": "Uruchom konwersję, a następnie sprawdź podgląd przed pobraniem."
+      },
+      "downloadExport": {
+        "title": "Pobierz eksport",
+        "description": "Zapisz plik i dołącz go do promptu AI lub automatyzacji."
+      }
+    }
   }
 }

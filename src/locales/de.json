@@ -68,5 +68,33 @@
     "downloadSuccess": "{{format}}-Export heruntergeladen",
     "downloadError": "Download fehlgeschlagen",
     "noOutput": "Noch nichts zum Herunterladen"
+  },
+  "infoModal": {
+    "triggerLabel": "Anleitung",
+    "title": "So nutzen Sie Figson Converter",
+    "description": "Folgen Sie diesen Schritten, um Figma-Auswahlen in KI-freundliche Exporte zu verwandeln.",
+    "warning": {
+      "title": "Modellergebnisse können variieren",
+      "description": "Verschiedene KI-Modelle können denselben Export unterschiedlich interpretieren. Nutzen Sie die Vorschau als Ausgangspunkt und prüfen Sie die Ergebnisse in Ihrem Workflow.",
+      "screenshotTip": "Fügen Sie nach Möglichkeit Screenshots zum Export hinzu — visueller Kontext hilft Modellen, Layout, Abstände und Styling zuverlässiger zu verstehen."
+    },
+    "steps": {
+      "selectFrame": {
+        "title": "Frame oder Komponente auswählen",
+        "description": "Wählen Sie in Figma den Frame, die Komponente oder den Bereich aus, den Sie konvertieren möchten."
+      },
+      "chooseSettings": {
+        "title": "Detailstufe und Format wählen",
+        "description": "Legen Sie fest, wie viel Struktur erhalten bleibt und welches Exportformat am besten zu Ihrem KI-Tool passt."
+      },
+      "convertAndPreview": {
+        "title": "Konvertieren und Vorschau prüfen",
+        "description": "Starten Sie die Konvertierung und prüfen Sie die Vorschau vor dem Download."
+      },
+      "downloadExport": {
+        "title": "Export herunterladen",
+        "description": "Speichern Sie die Datei und fügen Sie sie Ihrem KI-Prompt oder Automatisierungsablauf hinzu."
+      }
+    }
   }
 }

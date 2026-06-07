@@ -70,5 +70,33 @@
     "downloadSuccess": "{{format}} export downloaded",
     "downloadError": "Download failed",
     "noOutput": "Nothing to download yet"
+  },
+  "infoModal": {
+    "triggerLabel": "How to use",
+    "title": "How to use Figson Converter",
+    "description": "Follow these steps to turn Figma selections into AI-ready exports.",
+    "warning": {
+      "title": "Model output can vary",
+      "description": "Different AI models may interpret the same export differently. Treat the preview as a starting point and validate results in your workflow.",
+      "screenshotTip": "Include screenshots alongside the export when possible — visual context helps models understand layout, spacing, and styling more reliably."
+    },
+    "steps": {
+      "selectFrame": {
+        "title": "Select a frame or component",
+        "description": "In Figma, select the frame, component, or section you want to convert."
+      },
+      "chooseSettings": {
+        "title": "Choose detail level and format",
+        "description": "Pick how much structure to keep and which export format fits your AI tool best."
+      },
+      "convertAndPreview": {
+        "title": "Convert and review the preview",
+        "description": "Run Convert, then inspect the preview before downloading."
+      },
+      "downloadExport": {
+        "title": "Download the export",
+        "description": "Save the file and attach it to your AI prompt or automation flow."
+      }
+    }
   }
 }

@@ -68,5 +68,33 @@
     "downloadSuccess": "Export {{format}} téléchargé",
     "downloadError": "Échec du téléchargement",
     "noOutput": "Rien à télécharger pour le moment"
+  },
+  "infoModal": {
+    "triggerLabel": "Mode d'emploi",
+    "title": "Comment utiliser Figson Converter",
+    "description": "Suivez ces étapes pour transformer des sélections Figma en exports prêts pour l'IA.",
+    "warning": {
+      "title": "Les résultats varient selon le modèle",
+      "description": "Différents modèles d'IA peuvent interpréter le même export différemment. Utilisez l'aperçu comme point de départ et validez les résultats dans votre flux de travail.",
+      "screenshotTip": "Ajoutez des captures d'écran avec l'export lorsque c'est possible — le contexte visuel aide les modèles à mieux comprendre la mise en page, les espacements et le style."
+    },
+    "steps": {
+      "selectFrame": {
+        "title": "Sélectionner un frame ou composant",
+        "description": "Dans Figma, sélectionnez le frame, le composant ou la section à convertir."
+      },
+      "chooseSettings": {
+        "title": "Choisir le niveau de détail et le format",
+        "description": "Définissez la structure à conserver et le format d'export adapté à votre outil IA."
+      },
+      "convertAndPreview": {
+        "title": "Convertir et vérifier l'aperçu",
+        "description": "Lancez la conversion, puis examinez l'aperçu avant de télécharger."
+      },
+      "downloadExport": {
+        "title": "Télécharger l'export",
+        "description": "Enregistrez le fichier et joignez-le à votre prompt IA ou à votre automatisation."
+      }
+    }
   }
 }
