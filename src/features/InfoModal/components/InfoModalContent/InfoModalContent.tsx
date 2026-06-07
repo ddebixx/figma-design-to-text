@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { twMerge } from 'tailwind-merge'
 import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { InfoModalDetailLevels } from '@/features/InfoModal/components/InfoModalDetailLevels'
 import { InfoModalSteps } from '@/features/InfoModal/components/InfoModalSteps'
 import { InfoModalWarning } from '@/features/InfoModal/components/InfoModalWarning'
 import { INFO_MODAL_CONTENT_CLASS } from '@/features/InfoModal/consts/infoModalStyles'
@@ -23,6 +24,7 @@ export const InfoModalContent = () => {
 
       <div className={bodyClass}>
         <InfoModalSteps />
+        <InfoModalDetailLevels />
         <InfoModalWarning />
       </div>
     </DialogContent>

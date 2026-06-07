@@ -95,6 +95,23 @@
         "title": "Pobierz eksport",
         "description": "Zapisz plik i dołącz go do promptu AI lub automatyzacji."
       }
+    },
+    "detailLevels": {
+      "heading": "Różnice między poziomami szczegółowości",
+      "description": "Wybierz kompromis między wiernością projektu a rozmiarem tokenów.",
+      "listLabel": "Porównanie poziomów szczegółowości",
+      "precise": {
+        "title": "Precyzyjny",
+        "description": "Zachowuje najpełniejszą oczyszczoną strukturę — odstępy, style, hierarchia i szczegóły komponentów pozostają nienaruszone. Najlepszy, gdy model ma dokładnie odtworzyć design. Zużywa najwięcej tokenów."
+      },
+      "balanced": {
+        "title": "Zbalansowany",
+        "description": "Usuwa mało użyteczny szum, taki jak ID i surowe metadane layoutu, zachowując sensowną strukturę i style. Dobry domyślny wybór dla większości workflow AI."
+      },
+      "efficient": {
+        "title": "Wydajny",
+        "description": "Stosuje kompresję semantyczną, aby uzyskać najmniejszy eksport. Najlepszy dla dużych frame'ów, iteracyjnych promptów i przypadków, gdy wystarczy przybliżone zrozumienie layoutu."
+      }
     }
   }
 }

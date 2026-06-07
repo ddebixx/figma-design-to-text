@@ -16,6 +16,7 @@ describe('InfoModal', () => {
 
     expect(screen.getByRole('dialog')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'How to use Figson Converter' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Detail level differences' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Model output can vary' })).toBeInTheDocument()
   })
 })

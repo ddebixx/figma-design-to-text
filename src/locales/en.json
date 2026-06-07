@@ -97,6 +97,23 @@
         "title": "Download the export",
         "description": "Save the file and attach it to your AI prompt or automation flow."
       }
+    },
+    "detailLevels": {
+      "heading": "Detail level differences",
+      "description": "Pick the trade-off between design fidelity and token size.",
+      "listLabel": "Detail level comparison",
+      "precise": {
+        "title": "Precise",
+        "description": "Keeps the fullest cleaned structure — spacing, styles, hierarchy, and component detail stay intact. Best when the model must closely reproduce the design. Uses the most tokens."
+      },
+      "balanced": {
+        "title": "Balanced",
+        "description": "Strips low-value noise such as IDs and raw layout metadata while preserving meaningful structure and styles. A strong default for most AI workflows and medium-sized frames."
+      },
+      "efficient": {
+        "title": "Efficient",
+        "description": "Applies semantic compression to produce the smallest export. Best for large frames, iterative prompts, and cases where approximate layout understanding is enough."
+      }
     }
   }
 }

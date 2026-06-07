@@ -95,6 +95,23 @@
         "title": "Export herunterladen",
         "description": "Speichern Sie die Datei und fügen Sie sie Ihrem KI-Prompt oder Automatisierungsablauf hinzu."
       }
+    },
+    "detailLevels": {
+      "heading": "Unterschiede der Detailstufen",
+      "description": "Wählen Sie den Kompromiss zwischen Designtreue und Token-Größe.",
+      "listLabel": "Vergleich der Detailstufen",
+      "precise": {
+        "title": "Präzise",
+        "description": "Behält die vollständigste bereinigte Struktur — Abstände, Stile, Hierarchie und Komponentendetails bleiben erhalten. Am besten, wenn das Modell das Design eng reproduzieren soll. Verbraucht die meisten Tokens."
+      },
+      "balanced": {
+        "title": "Ausgewogen",
+        "description": "Entfernt wenig hilfreiches Rauschen wie IDs und rohe Layout-Metadaten, behält aber sinnvolle Struktur und Stile. Ein starker Standard für die meisten KI-Workflows und mittelgroße Frames."
+      },
+      "efficient": {
+        "title": "Effizient",
+        "description": "Wendet semantische Komprimierung an, um den kleinsten Export zu erzeugen. Ideal für große Frames, iterative Prompts und Fälle, in denen eine ungefähre Layout-Verständnis ausreicht."
+      }
     }
   }
 }

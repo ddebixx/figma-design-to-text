@@ -95,6 +95,23 @@
         "title": "下载导出文件",
         "description": "保存文件并将其添加到你的 AI 提示词或自动化流程中。"
       }
+    },
+    "detailLevels": {
+      "heading": "细节级别差异",
+      "description": "根据设计还原精度与 token 体积之间的平衡进行选择。",
+      "listLabel": "细节级别对比",
+      "precise": {
+        "title": "精确",
+        "description": "保留最完整的清理后结构——间距、样式、层级和组件细节都会保留。适合需要模型高度还原设计的场景，但会消耗最多 token。"
+      },
+      "balanced": {
+        "title": "均衡",
+        "description": "去除 ID、原始布局元数据等低价值噪声，同时保留有意义的结构和样式。适合大多数 AI 工作流的中等规模画框。"
+      },
+      "efficient": {
+        "title": "高效",
+        "description": "通过语义压缩生成最小导出。适合大型画框、迭代式提示，以及只需近似理解布局的场景。"
+      }
     }
   }
 }

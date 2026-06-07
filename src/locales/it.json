@@ -95,6 +95,23 @@
         "title": "Scarica l'export",
         "description": "Salva il file e allegalo al prompt IA o al flusso di automazione."
       }
+    },
+    "detailLevels": {
+      "heading": "Differenze tra i livelli di dettaglio",
+      "description": "Scegli il compromesso tra fedeltà del design e dimensione in token.",
+      "listLabel": "Confronto livelli di dettaglio",
+      "precise": {
+        "title": "Preciso",
+        "description": "Mantiene la struttura ripulita più completa — spaziature, stili, gerarchia e dettagli dei componenti restano intatti. Ideale quando il modello deve riprodurre fedelmente il design. Usa più token."
+      },
+      "balanced": {
+        "title": "Bilanciato",
+        "description": "Rimuove rumore a basso valore come ID e metadati grezzi di layout, preservando struttura e stili significativi. Ottima scelta predefinita per la maggior parte dei workflow IA."
+      },
+      "efficient": {
+        "title": "Efficiente",
+        "description": "Applica compressione semantica per produrre l'export più piccolo. Ideale per frame grandi, prompt iterativi e casi in cui basta una comprensione approssimativa del layout."
+      }
     }
   }
 }

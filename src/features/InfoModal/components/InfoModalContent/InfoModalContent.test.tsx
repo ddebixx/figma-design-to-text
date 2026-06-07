@@ -18,6 +18,7 @@ describe('InfoModalContent', () => {
       screen.getByText('Follow these steps to turn Figma selections into AI-ready exports.'),
     ).toBeInTheDocument()
     expect(screen.getByText('Select a frame or component')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Detail level differences' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Model output can vary' })).toBeInTheDocument()
   })
 })
