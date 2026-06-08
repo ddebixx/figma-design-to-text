@@ -13,6 +13,10 @@ function summarizePaint(paint: Paint): JsonRecord {
     type: paint.type,
   }
 
+  if (paint.blendMode !== undefined) {
+    summary.blendMode = paint.blendMode
+  }
+
   if (paint.opacity !== undefined) {
     summary.opacity = paint.opacity
   }

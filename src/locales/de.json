@@ -102,15 +102,15 @@
       "listLabel": "Vergleich der Detailstufen",
       "precise": {
         "title": "Präzise",
-        "description": "Behält die vollständigste bereinigte Struktur — Abstände, Stile, Hierarchie und Komponentendetails bleiben erhalten. Am besten, wenn das Modell das Design eng reproduzieren soll. Verbraucht die meisten Tokens."
+        "description": "Behält die vollständigste bereinigte Struktur — Abstände, Stile, Hierarchie, Komponentendetails, Mischmodi, Transformationen und Prototyp-Interaktionen (Trigger, Aktionen, Übergänge) bleiben erhalten. Am besten, wenn das Modell das Design eng reproduzieren soll. Verbraucht die meisten Tokens."
       },
       "balanced": {
         "title": "Ausgewogen",
-        "description": "Entfernt wenig hilfreiches Rauschen wie IDs und rohe Layout-Metadaten, behält aber sinnvolle Struktur und Stile. Ein starker Standard für die meisten KI-Workflows und mittelgroße Frames."
+        "description": "Entfernt wenig hilfreiches Rauschen wie IDs und rohe Layout-Metadaten, behält aber sinnvolle Struktur, Stile, Mischmodi und Prototyp-Interaktionen. Ein starker Standard für die meisten KI-Workflows und mittelgroße Frames."
       },
       "efficient": {
         "title": "Effizient",
-        "description": "Wendet semantische Komprimierung an, um den kleinsten Export zu erzeugen. Ideal für große Frames, iterative Prompts und Fälle, in denen eine ungefähre Layout-Verständnis ausreicht."
+        "description": "Wendet semantische Komprimierung an, um den kleinsten Export zu erzeugen. Entfernt Transformationen, Prototyp-Interaktionen und die meisten visuellen Metadaten. Ideal für große Frames, iterative Prompts und Fälle, in denen ein ungefähres Layout-Verständnis ausreicht."
       }
     }
   }

@@ -102,15 +102,15 @@
       "listLabel": "Porównanie poziomów szczegółowości",
       "precise": {
         "title": "Precyzyjny",
-        "description": "Zachowuje najpełniejszą oczyszczoną strukturę — odstępy, style, hierarchia i szczegóły komponentów pozostają nienaruszone. Najlepszy, gdy model ma dokładnie odtworzyć design. Zużywa najwięcej tokenów."
+        "description": "Zachowuje najpełniejszą oczyszczoną strukturę — odstępy, style, hierarchia, szczegóły komponentów, tryby mieszania, transformacje i interakcje prototypu (wyzwalacze, akcje, przejścia) pozostają nienaruszone. Najlepszy, gdy model ma dokładnie odtworzyć design. Zużywa najwięcej tokenów."
       },
       "balanced": {
         "title": "Zbalansowany",
-        "description": "Usuwa mało użyteczny szum, taki jak ID i surowe metadane layoutu, zachowując sensowną strukturę i style. Dobry domyślny wybór dla większości workflow AI."
+        "description": "Usuwa mało użyteczny szum, taki jak ID i surowe metadane layoutu, zachowując sensowną strukturę, style, tryby mieszania i interakcje prototypu. Dobry domyślny wybór dla większości workflow AI."
       },
       "efficient": {
         "title": "Wydajny",
-        "description": "Stosuje kompresję semantyczną, aby uzyskać najmniejszy eksport. Najlepszy dla dużych frame'ów, iteracyjnych promptów i przypadków, gdy wystarczy przybliżone zrozumienie layoutu."
+        "description": "Stosuje kompresję semantyczną, aby uzyskać najmniejszy eksport. Pomija transformacje, interakcje prototypu i większość metadanych wizualnych. Najlepszy dla dużych frame'ów, iteracyjnych promptów i przypadków, gdy wystarczy przybliżone zrozumienie layoutu."
       }
     }
   }

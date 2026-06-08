@@ -102,15 +102,15 @@
       "listLabel": "Confronto livelli di dettaglio",
       "precise": {
         "title": "Preciso",
-        "description": "Mantiene la struttura ripulita più completa — spaziature, stili, gerarchia e dettagli dei componenti restano intatti. Ideale quando il modello deve riprodurre fedelmente il design. Usa più token."
+        "description": "Mantiene la struttura ripulita più completa — spaziature, stili, gerarchia, dettagli dei componenti, modalità di fusione, trasformazioni e interazioni del prototipo (trigger, azioni, transizioni) restano intatti. Ideale quando il modello deve riprodurre fedelmente il design. Usa più token."
       },
       "balanced": {
         "title": "Bilanciato",
-        "description": "Rimuove rumore a basso valore come ID e metadati grezzi di layout, preservando struttura e stili significativi. Ottima scelta predefinita per la maggior parte dei workflow IA."
+        "description": "Rimuove rumore a basso valore come ID e metadati grezzi di layout, preservando struttura, stili, modalità di fusione e interazioni del prototipo. Ottima scelta predefinita per la maggior parte dei workflow IA."
       },
       "efficient": {
         "title": "Efficiente",
-        "description": "Applica compressione semantica per produrre l'export più piccolo. Ideale per frame grandi, prompt iterativi e casi in cui basta una comprensione approssimativa del layout."
+        "description": "Applica compressione semantica per produrre l'export più piccolo. Rimuove trasformazioni, interazioni del prototipo e la maggior parte dei metadati visivi. Ideale per frame grandi, prompt iterativi e casi in cui basta una comprensione approssimativa del layout."
       }
     }
   }

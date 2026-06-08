@@ -16,5 +16,6 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/plugin", "src/types", "src/consts/pluginUiSize.ts"]
+  "include": ["src/plugin", "src/types", "src/consts/pluginUiSize.ts"],
+  "exclude": ["src/plugin/**/*.test.ts"]
 }

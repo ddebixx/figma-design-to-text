@@ -1,7 +1,6 @@
 export const BALANCED_NODE_OMIT_KEYS = [
   'id',
   'locked',
-  'blendMode',
   'constraints',
   'layoutGrow',
   'layoutAlign',
@@ -16,6 +15,8 @@ export const EFFICIENT_NODE_OMIT_KEYS = [
   'locked',
   'visible',
   'blendMode',
+  'relativeTransform',
+  'reactions',
   'constraints',
   'layoutGrow',
   'layoutAlign',

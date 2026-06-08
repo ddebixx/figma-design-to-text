@@ -104,15 +104,15 @@
       "listLabel": "Detail level comparison",
       "precise": {
         "title": "Precise",
-        "description": "Keeps the fullest cleaned structure — spacing, styles, hierarchy, and component detail stay intact. Best when the model must closely reproduce the design. Uses the most tokens."
+        "description": "Keeps the fullest cleaned structure — spacing, styles, hierarchy, component detail, blend modes, transforms, and prototype interactions (triggers, actions, transitions) stay intact. Best when the model must closely reproduce the design. Uses the most tokens."
       },
       "balanced": {
         "title": "Balanced",
-        "description": "Strips low-value noise such as IDs and raw layout metadata while preserving meaningful structure and styles. A strong default for most AI workflows and medium-sized frames."
+        "description": "Strips low-value noise such as IDs and raw layout metadata while preserving meaningful structure, styles, blend modes, and prototype interactions. A strong default for most AI workflows and medium-sized frames."
       },
       "efficient": {
         "title": "Efficient",
-        "description": "Applies semantic compression to produce the smallest export. Best for large frames, iterative prompts, and cases where approximate layout understanding is enough."
+        "description": "Applies semantic compression to produce the smallest export. Drops transforms, prototype interactions, and most visual metadata. Best for large frames, iterative prompts, and cases where approximate layout understanding is enough."
       }
     }
   }

@@ -1,5 +1,7 @@
 import { inferElementSemantics } from './inferElementSemantics'
 import { compactRecord, type JsonRecord, serializeFigmaValue } from './jsonValue'
+import { serializePrototypeInteractions } from './serializePrototypeInteractions'
+import { serializeRelativeTransform } from './serializeRelativeTransform'
 import { summarizeEffects } from './summarizeEffect'
 import { summarizePaints } from './summarizePaint'
 
@@ -9,6 +11,7 @@ export function serializeSceneNode(node: SceneNode): JsonRecord {
     inferElementSemantics({ nodeType: node.type, nodeName: node.name }),
     buildSceneFlags(node),
     buildGeometryFields(node),
+    serializeRelativeTransform(node),
     buildBlendFields(node),
     buildStrokeSummary(node),
     buildConstraintFields(node),
@@ -18,6 +21,7 @@ export function serializeSceneNode(node: SceneNode): JsonRecord {
     buildInstanceFields(node),
     buildComponentFields(node),
     buildShapeFields(node),
+    serializePrototypeInteractions(node),
     buildChildrenField(node),
   ])
 }
