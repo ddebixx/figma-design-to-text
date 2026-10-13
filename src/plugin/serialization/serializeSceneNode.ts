@@ -5,7 +5,13 @@ import { serializeRelativeTransform } from './serializeRelativeTransform'
 import { summarizeEffects } from './summarizeEffect'
 import { summarizePaints } from './summarizePaint'
 
-export function serializeSceneNode(node: SceneNode): JsonRecord {
+export async function serializeSceneNode(node: SceneNode): Promise<JsonRecord> {
+  const [instanceFields, childrenField] = await Promise.all([
+    buildInstanceFields(node),
+    buildChildrenField(node),
+  ])
+  const prototypeInteractions = await serializePrototypeInteractions(node)
+
   return compactRecord([
     buildIdentityFields(node),
     inferElementSemantics({ nodeType: node.type, nodeName: node.name }),
@@ -18,11 +24,11 @@ export function serializeSceneNode(node: SceneNode): JsonRecord {
     buildAutoLayoutFields(node),
     buildFrameFields(node),
     buildTextFields(node),
-    buildInstanceFields(node),
+    instanceFields,
     buildComponentFields(node),
     buildShapeFields(node),
-    serializePrototypeInteractions(node),
-    buildChildrenField(node),
+    prototypeInteractions,
+    childrenField,
   ])
 }
 
@@ -162,21 +168,30 @@ function buildTextFields(node: SceneNode): JsonRecord {
   }
 }
 
-function buildInstanceFields(node: SceneNode): JsonRecord {
+async function buildInstanceFields(node: SceneNode): Promise<JsonRecord> {
   if (node.type !== 'INSTANCE') {
     return {}
   }
 
-  const fields: JsonRecord = {
+  const mainComponentFields = await readMainComponentFields(node)
+
+  return {
     componentProperties: serializeFigmaValue(node.componentProperties),
+    ...mainComponentFields,
+  }
+}
+
+async function readMainComponentFields(node: InstanceNode): Promise<JsonRecord> {
+  const mainComponent = await node.getMainComponentAsync()
+
+  if (!mainComponent) {
+    return {}
   }
 
-  if (node.mainComponent) {
-    fields.mainComponentName = node.mainComponent.name
-    fields.mainComponentId = node.mainComponent.id
+  return {
+    mainComponentName: mainComponent.name,
+    mainComponentId: mainComponent.id,
   }
-
-  return fields
 }
 
 function buildComponentFields(node: SceneNode): JsonRecord {
@@ -201,12 +216,12 @@ function buildShapeFields(node: SceneNode): JsonRecord {
   return fields
 }
 
-function buildChildrenField(node: SceneNode): JsonRecord {
+async function buildChildrenField(node: SceneNode): Promise<JsonRecord> {
   if (!('children' in node)) {
     return {}
   }
 
   return {
-    children: node.children.map((child) => serializeSceneNode(child)),
+    children: await Promise.all(node.children.map((child) => serializeSceneNode(child))),
   }
 }

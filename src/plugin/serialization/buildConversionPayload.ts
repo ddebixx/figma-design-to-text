@@ -1,7 +1,7 @@
 import type { JsonRecord } from './jsonValue'
 import { serializeSceneNode } from './serializeSceneNode'
 
-export function buildConversionPayload(): JsonRecord {
+export async function buildConversionPayload(): Promise<JsonRecord> {
   const selection = figma.currentPage.selection
 
   if (selection.length === 0) {
@@ -16,6 +16,6 @@ export function buildConversionPayload(): JsonRecord {
       selectionCount: selection.length,
       exportMode: 'compact',
     },
-    nodes: selection.map((node) => serializeSceneNode(node)),
+    nodes: await Promise.all(selection.map((node) => serializeSceneNode(node))),
   }
 }

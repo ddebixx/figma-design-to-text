@@ -2,21 +2,21 @@ import type { JsonRecord, JsonValue } from './jsonValue'
 import { summarizeAction } from './summarizeAction'
 import { summarizeTrigger } from './summarizeTrigger'
 
-const summarizeReactionActions = (reaction: Reaction): JsonValue[] => {
+const summarizeReactionActions = async (reaction: Reaction): Promise<JsonValue[]> => {
   if (reaction.actions && reaction.actions.length > 0) {
-    return reaction.actions.map(summarizeAction)
+    return Promise.all(reaction.actions.map((action) => summarizeAction(action)))
   }
 
   if (reaction.action) {
-    return [summarizeAction(reaction.action)]
+    return Promise.all([summarizeAction(reaction.action)])
   }
 
   return []
 }
 
-export const summarizeReaction = (reaction: Reaction): JsonRecord => {
+export const summarizeReaction = async (reaction: Reaction): Promise<JsonRecord> => {
   const summary: JsonRecord = {
-    actions: summarizeReactionActions(reaction),
+    actions: await summarizeReactionActions(reaction),
   }
 
   if (reaction.trigger) {

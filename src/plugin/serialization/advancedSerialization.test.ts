@@ -1,7 +1,10 @@
 /// <reference types="@figma/plugin-typings" />
 
-import { beforeEach, describe, expect, it } from 'vitest'
-import { installMockFigmaGlobal } from '../../test/mockFigmaGlobal'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import {
+  installMockFigmaGlobal,
+  readSynchronousGetNodeByIdCallCount,
+} from '../../test/mockFigmaGlobal'
 import { resolveDestinationNodeName } from './resolveDestinationNodeName'
 import { serializePrototypeInteractions } from './serializePrototypeInteractions'
 import { serializeRelativeTransform } from './serializeRelativeTransform'
@@ -74,21 +77,21 @@ describe('summarizeTransition', () => {
 })
 
 describe('summarizeAction', () => {
-  it('summarizes URL action', () => {
+  it('summarizes URL action', async () => {
     const action = {
       type: 'URL',
       url: 'https://example.com',
       openInNewTab: true,
     } as Action
 
-    expect(summarizeAction(action)).toEqual({
+    await expect(summarizeAction(action)).resolves.toEqual({
       type: 'URL',
       url: 'https://example.com',
       openInNewTab: true,
     })
   })
 
-  it('summarizes node navigation with transition and destination name', () => {
+  it('summarizes node navigation with transition and destination name', async () => {
     const action = {
       type: 'NODE',
       destinationId: 'frame-2',
@@ -101,7 +104,7 @@ describe('summarizeAction', () => {
       resetScrollPosition: true,
     } as Action
 
-    expect(summarizeAction(action)).toEqual({
+    await expect(summarizeAction(action)).resolves.toEqual({
       type: 'NODE',
       navigation: 'NAVIGATE',
       destinationId: 'frame-2',
@@ -113,11 +116,92 @@ describe('summarizeAction', () => {
       },
       resetScrollPosition: true,
     })
+    expect(readSynchronousGetNodeByIdCallCount()).toBe(0)
+  })
+
+  it('uses the destination id when the lookup resolves to null', async () => {
+    const action = {
+      type: 'NODE',
+      destinationId: 'missing-frame',
+      navigation: 'NAVIGATE',
+      transition: null,
+    } as Action
+
+    await expect(summarizeAction(action)).resolves.toEqual({
+      type: 'NODE',
+      navigation: 'NAVIGATE',
+      destinationId: 'missing-frame',
+      destinationName: 'missing-frame',
+    })
+    expect(readSynchronousGetNodeByIdCallCount()).toBe(0)
+  })
+
+  it('omits destination fields when the destination id is missing or null', async () => {
+    const lookup = vi.spyOn(figma, 'getNodeByIdAsync')
+    const missingDestination = {
+      type: 'NODE',
+      navigation: 'NAVIGATE',
+      transition: null,
+    } as Action
+    const nullDestination = {
+      type: 'NODE',
+      destinationId: null,
+      navigation: 'NAVIGATE',
+      transition: null,
+    } as Action
+
+    await expect(summarizeAction(missingDestination)).resolves.toEqual({
+      type: 'NODE',
+      navigation: 'NAVIGATE',
+    })
+    await expect(summarizeAction(nullDestination)).resolves.toEqual({
+      type: 'NODE',
+      navigation: 'NAVIGATE',
+    })
+    expect(lookup).not.toHaveBeenCalled()
+  })
+
+  it('omits destination fields when the destination id is blank', async () => {
+    const lookup = vi.spyOn(figma, 'getNodeByIdAsync')
+    const action = {
+      type: 'NODE',
+      destinationId: '',
+      navigation: 'NAVIGATE',
+      transition: null,
+    } as Action
+
+    await expect(summarizeAction(action)).resolves.toEqual({
+      type: 'NODE',
+      navigation: 'NAVIGATE',
+    })
+    expect(lookup).not.toHaveBeenCalled()
+    expect(readSynchronousGetNodeByIdCallCount()).toBe(0)
+  })
+
+  it('does not look up destinations for non-node actions', async () => {
+    const lookup = vi.spyOn(figma, 'getNodeByIdAsync')
+
+    await expect(
+      summarizeAction({
+        type: 'URL',
+        url: 'https://example.com',
+        openInNewTab: true,
+      } as Action),
+    ).resolves.toEqual({
+      type: 'URL',
+      url: 'https://example.com',
+      openInNewTab: true,
+    })
+    await expect(summarizeAction({ type: 'BACK' } as Action)).resolves.toEqual({ type: 'BACK' })
+    await expect(summarizeAction({ type: 'CLOSE' } as Action)).resolves.toEqual({ type: 'CLOSE' })
+    await summarizeAction({ type: 'UPDATE_MEDIA_RUNTIME' } as Action)
+
+    expect(lookup).not.toHaveBeenCalled()
   })
 })
 
 describe('summarizeReaction', () => {
-  it('summarizes legacy single action reactions', () => {
+  it('summarizes legacy single action reactions', async () => {
     const reaction = {
       trigger: { type: 'ON_CLICK' },
       action: {
@@ -128,7 +212,7 @@ describe('summarizeReaction', () => {
       },
     } as Reaction
 
-    expect(summarizeReaction(reaction)).toEqual({
+    await expect(summarizeReaction(reaction)).resolves.toEqual({
       trigger: { type: 'ON_CLICK' },
       actions: [
         {
@@ -139,29 +223,59 @@ describe('summarizeReaction', () => {
         },
       ],
     })
+    expect(readSynchronousGetNodeByIdCallCount()).toBe(0)
   })
 
-  it('summarizes multi-action reactions', () => {
+  it('summarizes multi-action reactions in input order and ignores the legacy action', async () => {
     const reaction = {
       trigger: { type: 'ON_HOVER' },
-      actions: [{ type: 'BACK' }, { type: 'CLOSE' }],
+      actions: [
+        { type: 'BACK' },
+        {
+          type: 'NODE',
+          destinationId: 'frame-2',
+          navigation: 'NAVIGATE',
+          transition: null,
+        },
+      ],
+      action: {
+        type: 'NODE',
+        destinationId: 'other-frame',
+        navigation: 'NAVIGATE',
+        transition: null,
+      },
     } as Reaction
 
-    expect(summarizeReaction(reaction)).toEqual({
+    await expect(summarizeReaction(reaction)).resolves.toEqual({
       trigger: { type: 'ON_HOVER' },
-      actions: [{ type: 'BACK' }, { type: 'CLOSE' }],
+      actions: [
+        { type: 'BACK' },
+        {
+          type: 'NODE',
+          navigation: 'NAVIGATE',
+          destinationId: 'frame-2',
+          destinationName: 'Checkout Screen',
+        },
+      ],
     })
+    expect(readSynchronousGetNodeByIdCallCount()).toBe(0)
   })
 })
 
 describe('serializePrototypeInteractions', () => {
-  it('returns empty record when node has no reactions', () => {
+  it('returns empty record when node has no reactions', async () => {
     const node = { type: 'RECTANGLE', name: 'Box' } as SceneNode
 
-    expect(serializePrototypeInteractions(node)).toEqual({})
+    await expect(serializePrototypeInteractions(node)).resolves.toEqual({})
   })
 
-  it('serializes reactions on interactive nodes', () => {
+  it('returns empty record when the reactions list is empty', async () => {
+    const node = { type: 'RECTANGLE', name: 'Box', reactions: [] } as unknown as SceneNode
+
+    await expect(serializePrototypeInteractions(node)).resolves.toEqual({})
+  })
+
+  it('serializes reactions on interactive nodes', async () => {
     const node = {
       type: 'FRAME',
       name: 'Button',
@@ -184,7 +298,7 @@ describe('serializePrototypeInteractions', () => {
       ],
     } as unknown as SceneNode
 
-    expect(serializePrototypeInteractions(node)).toEqual({
+    await expect(serializePrototypeInteractions(node)).resolves.toEqual({
       reactions: [
         {
           trigger: { type: 'ON_CLICK' },
@@ -204,6 +318,7 @@ describe('serializePrototypeInteractions', () => {
         },
       ],
     })
+    expect(readSynchronousGetNodeByIdCallCount()).toBe(0)
   })
 })
 
@@ -227,8 +342,27 @@ describe('serializeRelativeTransform', () => {
 })
 
 describe('resolveDestinationNodeName', () => {
-  it('falls back to destination id when node is missing', () => {
-    expect(resolveDestinationNodeName('missing-frame')).toBe('missing-frame')
+  it('falls back to destination id when node is missing', async () => {
+    await expect(resolveDestinationNodeName('missing-frame')).resolves.toBe('missing-frame')
+    expect(readSynchronousGetNodeByIdCallCount()).toBe(0)
+  })
+
+  it('falls back to destination id when the node has no name property', async () => {
+    installMockFigmaGlobal({
+      'nameless-frame': { id: 'nameless-frame' },
+    })
+
+    await expect(resolveDestinationNodeName('nameless-frame')).resolves.toBe('nameless-frame')
+    expect(readSynchronousGetNodeByIdCallCount()).toBe(0)
+  })
+
+  it('keeps an empty name', async () => {
+    installMockFigmaGlobal({
+      'empty-name': { id: 'empty-name', name: '' },
+    })
+
+    await expect(resolveDestinationNodeName('empty-name')).resolves.toBe('')
+    expect(readSynchronousGetNodeByIdCallCount()).toBe(0)
   })
 })
 

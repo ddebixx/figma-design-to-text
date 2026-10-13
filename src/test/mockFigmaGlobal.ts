@@ -4,19 +4,28 @@ const FIGMA_MIXED = Symbol('figma.mixed')
 
 type MockFigmaNode = {
   id: string
-  name: string
+  name?: string
 }
 
 type MockFigmaGlobal = {
   mixed: typeof FIGMA_MIXED
   getNodeById: (nodeId: string) => MockFigmaNode | null
+  getNodeByIdAsync: (nodeId: string) => Promise<MockFigmaNode | null>
 }
+
+let synchronousGetNodeByIdCallCount = 0
+
+export const readSynchronousGetNodeByIdCallCount = (): number => synchronousGetNodeByIdCallCount
 
 export const createMockFigmaGlobal = (
   nodesById: Record<string, MockFigmaNode> = {},
 ): MockFigmaGlobal => ({
   mixed: FIGMA_MIXED,
-  getNodeById: (nodeId: string) => nodesById[nodeId] ?? null,
+  getNodeById: () => {
+    synchronousGetNodeByIdCallCount += 1
+    throw new Error('getNodeById was called')
+  },
+  getNodeByIdAsync: async (nodeId: string) => nodesById[nodeId] ?? null,
 })
 
 type GlobalWithFigma = typeof globalThis & {
@@ -24,6 +33,7 @@ type GlobalWithFigma = typeof globalThis & {
 }
 
 export const installMockFigmaGlobal = (nodesById: Record<string, MockFigmaNode> = {}): void => {
+  synchronousGetNodeByIdCallCount = 0
   const mockFigma = createMockFigmaGlobal(nodesById)
   const globalWithFigma = globalThis as GlobalWithFigma
   globalWithFigma.figma = mockFigma as unknown as PluginAPI

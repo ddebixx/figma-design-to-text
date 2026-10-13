@@ -19,18 +19,31 @@ function handleUiMessage(message: UiToPluginMessage): void {
 }
 
 function handleConvertSelection(): void {
+  void convertSelection()
+}
+
+export async function convertSelection(): Promise<void> {
   try {
-    const conversionPayload = buildConversionPayload()
-    figma.ui.postMessage({
-      type: PluginMessageType.CONVERSION_RESULT,
-      payload: conversionPayload,
-    })
+    await postConversionResult()
   } catch (error) {
-    figma.ui.postMessage({
-      type: PluginMessageType.PLUGIN_ERROR,
-      payload: formatErrorMessage(error),
-    })
+    postPluginError(error)
   }
+}
+
+async function postConversionResult(): Promise<void> {
+  const conversionPayload = await buildConversionPayload()
+
+  figma.ui.postMessage({
+    type: PluginMessageType.CONVERSION_RESULT,
+    payload: conversionPayload,
+  })
+}
+
+function postPluginError(error: unknown): void {
+  figma.ui.postMessage({
+    type: PluginMessageType.PLUGIN_ERROR,
+    payload: formatErrorMessage(error),
+  })
 }
 
 function formatErrorMessage(error: unknown): string {

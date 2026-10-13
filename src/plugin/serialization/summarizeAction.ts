@@ -2,7 +2,9 @@ import { type JsonRecord, serializeFigmaValue } from './jsonValue'
 import { resolveDestinationNodeName } from './resolveDestinationNodeName'
 import { summarizeTransition } from './summarizeTransition'
 
-const summarizeNodeAction = (action: Extract<Action, { type: 'NODE' }>): JsonRecord => {
+const summarizeNodeAction = async (
+  action: Extract<Action, { type: 'NODE' }>,
+): Promise<JsonRecord> => {
   const summary: JsonRecord = {
     type: action.type,
     navigation: action.navigation,
@@ -10,7 +12,7 @@ const summarizeNodeAction = (action: Extract<Action, { type: 'NODE' }>): JsonRec
 
   if (action.destinationId) {
     summary.destinationId = action.destinationId
-    summary.destinationName = resolveDestinationNodeName(action.destinationId)
+    summary.destinationName = await resolveDestinationNodeName(action.destinationId)
   }
 
   if (action.transition) {
@@ -28,7 +30,7 @@ const summarizeNodeAction = (action: Extract<Action, { type: 'NODE' }>): JsonRec
   return summary
 }
 
-export const summarizeAction = (action: Action): JsonRecord => {
+export const summarizeAction = async (action: Action): Promise<JsonRecord> => {
   if (action.type === 'BACK' || action.type === 'CLOSE') {
     return { type: action.type }
   }

@@ -28,4 +28,5 @@ dist-ssr
 
 .husky
 
+.cursor
 coverage

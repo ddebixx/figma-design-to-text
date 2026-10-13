@@ -1,8 +1,10 @@
 {
   "name": "figson-converter",
-  "id": "figson-converter",
-  "api": "1.0.0",
+  "id": "1646225343162172564",
+  "api": "1.0.1",
   "main": "dist/main.js",
   "ui": "dist/index.html",
+  "networkAccess": { "allowedDomains": ["none"] },
+  "documentAccess": "dynamic-page",
   "editorType": ["figma"]
 }
